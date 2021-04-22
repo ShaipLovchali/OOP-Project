@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Circle.cpp" />
-    <ClCompile Include="Figures.cpp" />
+    <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="String.cpp" />
@@ -148,10 +148,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
-    <ClInclude Include="Figures.h" />
+    <ClInclude Include="Figure.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="String.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="source.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,12 +1,28 @@
 #include "Rectangle.h"
 #include "Circle.h"
 #include "Line.h"
-#include "Figures.h"
+#include "Figure.h"
 #include "String.h"
+
+#include "pugixml.cpp"
 
 int main()
 {
-	std::cout << "> ";
+	pugi::xml_document doc;
+	pugi::xml_parse_result result = doc.load_file("source.xml");
+	pugi::xml_node panels = doc.child("svg");
+
+	for (pugi::xml_node panel = panels.first_child(); panel; panel = panel.next_sibling()) {
+		std::cout << panel.name() << std::endl;
+		for (pugi::xml_attribute attr = panel.first_attribute(); attr; attr = attr.next_attribute())
+		{
+			std::cout << " " << attr.name() << "=" << attr.value() << std::endl;
+		}
+		std::cout << std::endl;
+	}
+
+
+	/*std::cout << "> ";
 	String input(32);
 	std::cin >> input;
 
@@ -54,7 +70,7 @@ int main()
 		std::cout << "> ";
 		std::cin >> input;
 		commands = input.split(" ");
-	}
+	}*/
 
 	
 	/*Rectangle rect1(3, 2, 4, 5, "blue");
