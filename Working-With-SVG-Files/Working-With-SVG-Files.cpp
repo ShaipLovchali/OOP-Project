@@ -8,7 +8,7 @@
 
 int main()
 {
-	pugi::xml_document doc;
+	/*pugi::xml_document doc;
 	pugi::xml_parse_result result = doc.load_file("source.xml");
 	pugi::xml_node panels = doc.child("svg");
 
@@ -19,7 +19,7 @@ int main()
 			std::cout << " " << attr.name() << "=" << attr.value() << std::endl;
 		}
 		std::cout << std::endl;
-	}
+	}*/
 
 
 	/*std::cout << "> ";
@@ -73,14 +73,14 @@ int main()
 	}*/
 
 	
-	/*Rectangle rect1(3, 2, 4, 5, "blue");
-	Rectangle rect2 = rect1;
+	Rectangle rect1(3, 2, 4, 5, "blue");
+	Rectangle rect2;
+	rect2 = rect1;
 	rect2.print();
 	
-	std::cout << rect2.getFillColor() << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 
-	Circle c1(1, 2, 3.4, "red");
+	/*Circle c1(1, 2, 3.4, "red");
 	Circle c2;
 	c2 = c1;
 	c2.print();

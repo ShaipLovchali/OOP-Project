@@ -1,12 +1,6 @@
 #include "Rectangle.h"
 
-void Rectangle::copy(const Rectangle& other)
-{
-	setX(other.x);
-	setY(other.y);
-	setWidth(other.width);
-	setHeight(other.height);
-	setFillColor(other.fillColor);
+void Rectangle::copy(const Rectangle& other) {
 }
 
 void Rectangle::erase()
@@ -14,27 +8,19 @@ void Rectangle::erase()
 	delete[] this->fillColor;
 }
 
-Rectangle::Rectangle() : x(0), y(0), width(0), height(0), fillColor(nullptr){}
+Rectangle::Rectangle() : Figure(), width(0), height(0) {}
 
-Rectangle::Rectangle(double x, double y, int width, int height, const char* fillColor)
-{
-	setX(x);
-	setY(y);
-	setWidth(width);
-	setHeight(height);
-	setFillColor(fillColor);
-}
+Rectangle::Rectangle(double x, double y, int width, int height, const char* fillColor) : Figure(x, y, fillColor), width(width), height(height){}
 
-Rectangle::Rectangle(const Rectangle& other)
-{
-	copy(other);
-}
+Rectangle::Rectangle(const Rectangle& other) : Figure(other.x, other.y, other.fillColor), width(other.width), height(other.height)
+{}
 
 Rectangle& Rectangle::operator=(const Rectangle& other)
 {
 	if (this != &other) {
 		erase();
-		copy(other);
+		this->width = other.width;
+		this->height = other.height;
 	}
 	return *this;
 }
@@ -42,61 +28,6 @@ Rectangle& Rectangle::operator=(const Rectangle& other)
 Rectangle::~Rectangle()
 {
 	erase();
-}
-
-void Rectangle::setX(double x)
-{
-	this->x = x;
-}
-
-void Rectangle::setY(double y)
-{
-	this->y = y;
-}
-
-void Rectangle::setWidth(int width)
-{
-	this->width = width;
-}
-
-void Rectangle::setHeight(int height)
-{
-	this->height = height;
-}
-
-void Rectangle::setFillColor(const char* fillColor)
-{
-	this->fillColor = new char[strlen(fillColor) + 1];
-
-	for (size_t i = 0; fillColor[i]; ++i) {
-		this->fillColor[i] = fillColor[i];
-	}
-	this->fillColor[strlen(fillColor)] = '\0';
-}
-
-double Rectangle::getX() const
-{
-	return this->x;
-}
-
-double Rectangle::getY() const
-{
-	return this->y;
-}
-
-int Rectangle::getWidth() const
-{
-	return this->width;
-}
-
-int Rectangle::getHeight() const
-{
-	return this->height;
-}
-
-char* Rectangle::getFillColor() const
-{
-	return this->fillColor;
 }
 
 void Rectangle::print() const

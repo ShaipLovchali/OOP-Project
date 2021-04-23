@@ -1,11 +1,12 @@
 #pragma once
 #include <iostream>
+#include <cstring>
 
 class Figure {
-public:
-
 protected:
 	double x, y;
-	std::string fillColor;
-
+	char* fillColor;
+public:
+	Figure();
+	Figure(double x, double y, const char* fillColor);
 };
