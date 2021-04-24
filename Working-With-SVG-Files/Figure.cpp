@@ -1,4 +1,5 @@
 #include "Figure.h"
+#include <cassert>
 
 Figure::Figure() : x(0), y(0), fillColor(nullptr){}
 
@@ -21,4 +22,9 @@ void Figure::setFiguresData(double x, double y, const char* fillColor)
 		this->fillColor[i] = fillColor[i];
 	}
 	this->fillColor[strlen(fillColor)] = '\0';
+}
+
+void Figure::print() const
+{
+	assert(false);
 }

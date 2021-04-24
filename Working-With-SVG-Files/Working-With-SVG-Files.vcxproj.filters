@@ -52,7 +52,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="source.xml">
+    <Xml Include="figures.svg">
       <Filter>Source Files</Filter>
     </Xml>
   </ItemGroup>

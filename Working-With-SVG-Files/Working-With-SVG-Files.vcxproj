@@ -154,7 +154,7 @@
     <ClInclude Include="Rectangle.h" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="source.xml" />
+    <Xml Include="figures.svg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,7 +7,7 @@ void Menu::start()
 		getline(std::cin, command);
 		splitCommand();
 
-		determineCommand();
+		determineCommand();	
 	} while (splitted[0] != "exit");
 }
 

@@ -9,7 +9,7 @@
 int main()
 {
 	/*pugi::xml_document doc;
-	pugi::xml_parse_result result = doc.load_file("source.xml");
+	pugi::xml_parse_result result = doc.load_file("figures.svg");
 	pugi::xml_node panels = doc.child("svg");
 
 	for (pugi::xml_node panel = panels.first_child(); panel; panel = panel.next_sibling()) {
@@ -25,20 +25,19 @@ int main()
 	menu.start();*/
 
 	
-	Rectangle rect1(3, 2, 4, 5, "blue");
-	Rectangle rect2 = rect1;
-	rect2.print();
-	
-	std::cout << "---------------------------------------------" << std::endl;
+	/*Rectangle r1(3, 2, 4, 5, "blue");
 
 	Circle c1(1, 2, 3.4, "red");
-	Circle c2;
-	c2 = c1;
-	c2.print();
-
-	std::cout << "---------------------------------------------" << std::endl;
-
+	
 	Line l1(3.4, 2.8, 12, 15, "pink");
-	Line l2 = l1;
-	l2.print();
+	
+	std::vector<Figure*> figures;
+	figures.push_back(&r1);
+	figures.push_back(&c1);
+	figures.push_back(&l1);
+
+	for (size_t i = 0; i < figures.size(); ++i)
+	{
+		figures[i]->print();
+	}*/
 }
