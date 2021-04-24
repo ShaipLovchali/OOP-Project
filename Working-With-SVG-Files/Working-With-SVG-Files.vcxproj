@@ -142,16 +142,16 @@
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Line.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Rectangle.cpp" />
-    <ClCompile Include="String.cpp" />
     <ClCompile Include="Working-With-SVG-Files.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Rectangle.h" />
-    <ClInclude Include="String.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="source.xml" />
