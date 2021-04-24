@@ -1,6 +1,9 @@
 #include "Rectangle.h"
 
 void Rectangle::copy(const Rectangle& other) {
+	setFiguresData(other.x, other.y, other.fillColor);
+	this->width = other.width;
+	this->height = other.height;
 }
 
 void Rectangle::erase()
@@ -12,15 +15,16 @@ Rectangle::Rectangle() : Figure(), width(0), height(0) {}
 
 Rectangle::Rectangle(double x, double y, int width, int height, const char* fillColor) : Figure(x, y, fillColor), width(width), height(height){}
 
-Rectangle::Rectangle(const Rectangle& other) : Figure(other.x, other.y, other.fillColor), width(other.width), height(other.height)
-{}
+Rectangle::Rectangle(const Rectangle& other)
+{
+	copy(other);
+}
 
 Rectangle& Rectangle::operator=(const Rectangle& other)
 {
 	if (this != &other) {
 		erase();
-		this->width = other.width;
-		this->height = other.height;
+		copy(other);
 	}
 	return *this;
 }

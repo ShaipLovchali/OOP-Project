@@ -2,7 +2,9 @@
 
 void Line::copy(const Line& other)
 {
-	
+	setFiguresData(other.x, other.y, other.fillColor);
+	this->x2 = other.x2;
+	this->y2 = other.y2;
 }
 
 void Line::erase()

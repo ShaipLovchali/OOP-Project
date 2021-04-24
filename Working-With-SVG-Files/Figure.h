@@ -9,4 +9,5 @@ protected:
 public:
 	Figure();
 	Figure(double x, double y, const char* fillColor);
+	void setFiguresData(double x, double y, const char*);
 };
