@@ -1,6 +1,7 @@
 #pragma once
 #include "Menu.h"
 
+
 void Menu::start()
 {
 	do {
@@ -20,7 +21,7 @@ void Menu::splitCommand()
 	{
 		if (command[i] == ' ') {
 			splitted.push_back(subStr);
-			subStr = "";
+			subStr.clear();
 			continue;
 		}
 		subStr.pushBack(command[i]);
@@ -60,8 +61,14 @@ void Menu::determineCommand()
 		std::cout << "Saved file in .. " << std::endl;
 	}
 	else if (splitted[0] == "help") {
-		std::cout << "help.. " << std::endl;
-	}
+		std::cout << "The following commands are supported:" << std::endl;
+		std::cout << " open <file> - opens <file>" << std::endl;
+		std::cout << " close	closes currently opened file" << std::endl;
+		std::cout << " save saves the currently open file" << std::endl;
+		std::cout << " saveas <file>	saves the currently open file in <file>" << std::endl;
+		std::cout << " help prints this information" << std::endl;
+		std::cout << " exit exists the program" << std::endl;
+	}				   
 	else if (splitted[0] == "print") {
 		ParseData parser;
 		parser.parseSvg();
@@ -71,7 +78,8 @@ void Menu::determineCommand()
 		std::cout << "Created.. " << std::endl;
 	}
 	else if (splitted[0] == "erase") {
-		std::cout << "Erased.. " << std::endl;
+		int num = splitted[1].toNum<int>();
+		std::cout << "Erased .." << std::endl;
 	}
 	else if (splitted[0] == "translate") {
 		std::cout << "Translated.. " << std::endl;

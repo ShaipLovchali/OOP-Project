@@ -8,6 +8,7 @@
 #include "String.h"
 #include "pugixml.cpp"
 #include <fstream>
+#include <cassert>
 
 class ParseData {
 private:
@@ -20,5 +21,6 @@ public:
 	void parseSvg();
 	void split();
 	char* toCharArr(const String&, size_t index);
+	Figure* getFig(const char*);
 	void printFigures() const;
 };

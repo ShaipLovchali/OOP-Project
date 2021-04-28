@@ -14,5 +14,5 @@ public:
 	Circle& operator=(const Circle&);
 	~Circle();
 
-	void print() const;
+	void print() const override;
 };

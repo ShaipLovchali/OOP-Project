@@ -1,6 +1,7 @@
 #pragma once
 #include "ParseData.h"
 
+
 int ParseData::loadFile()
 {
 	char fileName[] = "figures.svg";
@@ -28,18 +29,9 @@ void ParseData::parseSvg()
 
 		split();
 
-		if (strcmp(tag.name(), "rect") == 0) {
-			Rectangle* r = new Rectangle(3, 2, 4, 4, "blue");
-			figures.push_back(r);
-		}
-		else if (strcmp(tag.name(), "circle") == 0) {
-			Circle* c = new Circle(2, 2, 3, "red");
-			figures.push_back(c);
-		}
-		else if (strcmp(tag.name(), "line") == 0) {
-			Line* l = new Line(4, 1, 4, 1, "green");
-			figures.push_back(l);
-		}
+		Figure* fig = getFig(tag.name());
+		
+		figures.push_back(fig);
 	}
 }
 
@@ -70,9 +62,22 @@ char* ParseData::toCharArr(const String& str, size_t index)
 	return fillColor;
 }
 
+Figure* ParseData::getFig(const char* figName)
+{
+	if (strcmp(figName, "rect") == 0) {
+		return new Rectangle(splitted[0].toNum<double>(), splitted[1].toNum<double>(), splitted[2].toNum<int>(), splitted[3].toNum<int>(), toCharArr(splitted[4], 4));
+	}
+	else if (strcmp(figName, "circle") == 0) {
+		return new Circle(splitted[0].toNum<double>(), splitted[1].toNum<double>(), splitted[2].toNum<double>(),toCharArr(splitted[3], 3));
+	}
+	else if (strcmp(figName, "line") == 0) {
+		return new Line(splitted[0].toNum<double>(), splitted[1].toNum<double>(), splitted[2].toNum<double>(), splitted[3].toNum<double>(), toCharArr(splitted[4], 4));
+	}
+}
+
 void ParseData::printFigures() const
 {
-	for (size_t i = 0; i < figures.getSize(); ++i)
+	for (size_t i = 0; i < figures.getCapacity(); ++i)
 	{
 		figures[i]->print();
 	}

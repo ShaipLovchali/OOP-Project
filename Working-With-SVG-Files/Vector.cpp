@@ -201,7 +201,8 @@ size_t Vector<T>::getSize() const
 template<typename T>
 void Vector<T>::clear()
 {
-	for (size_t i = 0; i < size; i++)
+	const size_t cap = capacity;
+	for (size_t i = 0; i < cap; ++i)
 	{
 		pop_back();
 	}

@@ -14,5 +14,5 @@ public:
 	Line& operator=(const Line&);
 	~Line();
 
-	void print() const;
+	void print() const override;
 };

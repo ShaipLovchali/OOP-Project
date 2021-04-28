@@ -14,5 +14,5 @@ public:
 	Rectangle& operator=(const Rectangle&);
 	~Rectangle();
 
-	void print() const;
+	void print() const override;
 };

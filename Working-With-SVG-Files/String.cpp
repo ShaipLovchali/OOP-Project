@@ -162,9 +162,10 @@ void String::reverse()
 
 void String::clear()
 {
-	for (size_t i = 0; i < size; ++i)
+	const size_t len = size;
+	for (size_t i = 0; i < len; ++i)
 	{
-		this->data[i] = ' ';
+		popBack();
 	}
 }
 

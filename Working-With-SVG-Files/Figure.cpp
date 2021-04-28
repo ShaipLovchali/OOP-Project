@@ -22,7 +22,3 @@ void Figure::setFiguresData(double x, double y, const char* fillColor)
 	this->fillColor[strlen(fillColor)] = '\0';
 }
 
-void Figure::print() const
-{
-	assert(false);
-}

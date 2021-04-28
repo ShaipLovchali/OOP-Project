@@ -42,6 +42,8 @@ public:
 	int compare(const String&); //Сравнява два низа лексикографски
 	void swap(String&); //Разменя стойностите на два низа
 
+	template<typename T>
+	T toNum();
 
 	friend std::istream& operator>>(std::istream& in, String& other) {
 		other.size = 50;
@@ -52,3 +54,15 @@ public:
 	void print(); //Извежда на стандартния изход низ
 
 };
+
+template<typename T>
+inline T String::toNum()
+{
+	T result = 0;
+
+	for (size_t i = 0; i < size; ++i)
+	{
+		result += (data[i] - '0') * pow(10, (size - i - 1));
+	}
+	return result;
+}

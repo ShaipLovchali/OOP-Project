@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <cassert>
 #include <cstring>
 
 class Figure {
@@ -9,8 +8,8 @@ protected:
 	char* fillColor;
 public:
 	Figure();
-	Figure(double x, double y, const char* fillColor);
-	void setFiguresData(double x, double y, const char*);
+	Figure(double, double, const char*);
+	void setFiguresData(double, double, const char*);
 
-	virtual void print() const;
+	virtual void print() const = 0;
 };
