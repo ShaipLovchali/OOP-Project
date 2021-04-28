@@ -1,10 +1,11 @@
+#pragma once
 #include "Menu.h"
 
 void Menu::start()
 {
 	do {
 		std::cout << "Please, enter a command: ";
-		getline(std::cin, command);
+		std::cin >> command;
 		splitCommand();
 
 		determineCommand();	
@@ -14,24 +15,40 @@ void Menu::start()
 void Menu::splitCommand()
 {
 	splitted.clear();
-	std::string subStr = "";
-	for (size_t i = 0; i < command.size(); ++i)
+	String subStr;
+	for (size_t i = 0; command[i]; ++i)
 	{
 		if (command[i] == ' ') {
 			splitted.push_back(subStr);
 			subStr = "";
 			continue;
 		}
-		subStr += command[i];
+		subStr.pushBack(command[i]);
 	}
 	
 	splitted.push_back(subStr);
 }
 
+char* Menu::toCharArr(const String& str)
+{
+	char* fillColor = new char[str.getSize() + 1];
+	for (size_t i = 0; i < str.getSize(); i++)
+	{
+		fillColor[i] = str[i];
+	}
+	fillColor[str.getSize()] = '\0';
+
+	return fillColor;
+}
+
 void Menu::determineCommand()
 {
 	if (splitted[0] == "open") {
-		std::cout << "Open file.. " << std::endl;
+		//char* fileName = toCharArr(splitted[1]);
+		ParseData input;
+		if (input.loadFile() != -1) {
+			std::cout << "Successfully opened file" << std::endl;
+		}
 	}
 	else if (splitted[0] == "close") {
 		std::cout << "Closed file.. " << std::endl;
@@ -46,7 +63,9 @@ void Menu::determineCommand()
 		std::cout << "help.. " << std::endl;
 	}
 	else if (splitted[0] == "print") {
-		std::cout << "Printed.. " << std::endl;
+		ParseData parser;
+		parser.parseSvg();
+		parser.printFigures();
 	}
 	else if (splitted[0] == "create") {
 		std::cout << "Created.. " << std::endl;

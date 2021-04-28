@@ -1,16 +1,14 @@
 #pragma once
-#include <string>
-#include <vector>
-#include <cstring>
-#include <iostream>
+#include "ParseData.h"
 
 class Menu {
 private:
-	std::string command;
-	std::vector<std::string> splitted;
+	String command;
+	Vector<String> splitted;
 
 	void determineCommand();
 	void splitCommand();
+	char* toCharArr(const String&);
 public:
 	void start();
 };
