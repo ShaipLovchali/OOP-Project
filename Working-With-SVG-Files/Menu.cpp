@@ -4,12 +4,17 @@
 
 void Menu::start()
 {
+	ParseData parser;
+	parser.parseSvg();
+
+	VectorOfFigures v;
+	v.loadFromStream();
 	do {
 		std::cout << "Please, enter a command: ";
 		std::cin >> command;
 		splitCommand();
 
-		determineCommand();	
+		determineCommand(parser,v);	
 	} while (splitted[0] != "exit");
 }
 
@@ -42,14 +47,18 @@ char* Menu::toCharArr(const String& str)
 	return fillColor;
 }
 
-void Menu::determineCommand()
+void Menu::determineCommand(ParseData& parser, VectorOfFigures& v)
 {
 	if (splitted[0] == "open") {
-		//char* fileName = toCharArr(splitted[1]);
-		ParseData input;
-		if (input.loadFile() != -1) {
+		char* fileName = toCharArr(splitted[1]);
+		std::ifstream in(fileName);
+		if (!in) {
+			std::cout << "No such file existing" << std::endl;
+		}
+		else {
 			std::cout << "Successfully opened file" << std::endl;
 		}
+		in.close();
 	}
 	else if (splitted[0] == "close") {
 		std::cout << "Closed file.. " << std::endl;
@@ -63,23 +72,41 @@ void Menu::determineCommand()
 	else if (splitted[0] == "help") {
 		std::cout << "The following commands are supported:" << std::endl;
 		std::cout << " open <file> - opens <file>" << std::endl;
-		std::cout << " close	closes currently opened file" << std::endl;
+		std::cout << " close closes currently opened file" << std::endl;
 		std::cout << " save saves the currently open file" << std::endl;
-		std::cout << " saveas <file>	saves the currently open file in <file>" << std::endl;
+		std::cout << " saveas <file> saves the currently open file in <file>" << std::endl;
 		std::cout << " help prints this information" << std::endl;
 		std::cout << " exit exists the program" << std::endl;
 	}				   
 	else if (splitted[0] == "print") {
-		ParseData parser;
-		parser.parseSvg();
-		parser.printFigures();
+		v.printFigures();
 	}
 	else if (splitted[0] == "create") {
-		std::cout << "Created.. " << std::endl;
+		if (splitted[1] == "rect") {
+			v.create(new Rectangle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), toCharArr(splitted[6])));
+			std::cout << "Successfully created rectangle" << std::endl;
+		}
+		else if (splitted[1] == "circle") {
+			v.create(new Circle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), toCharArr(splitted[5])));
+			std::cout << "Successfully created circle" << std::endl;
+		}
+		else if (splitted[1] == "line") {
+			v.create(new Line(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), toCharArr(splitted[6])));
+			std::cout << "Successfully created line" << std::endl;
+		}
+		else {
+			std::cout << "Invalid figure type" << std::endl;
+		}
 	}
 	else if (splitted[0] == "erase") {
-		int num = splitted[1].toNum<int>();
-		std::cout << "Erased .." << std::endl;
+		int num = splitted[1].stod();
+		if (num > 0 && num <= v.size()) {
+			v.erase(num);
+			std::cout << "Erased figure " << num << std::endl;
+		}
+		else {
+			std::cout << "There is no figure number " << num << std::endl;
+		}
 	}
 	else if (splitted[0] == "translate") {
 		std::cout << "Translated.. " << std::endl;
@@ -94,5 +121,7 @@ void Menu::determineCommand()
 		std::cout << "You have enterned an invalid command!" << std::endl;
 	}
 }
+
+
 
 

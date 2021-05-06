@@ -12,4 +12,5 @@ public:
 	void setFiguresData(double, double, const char*);
 
 	virtual void print() const = 0;
+	virtual void loadDataFromFile(std::istream&) = 0;
 };

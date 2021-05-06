@@ -17,10 +17,5 @@ private:
 	String getAttr;
 	Vector<String> splitted;
 public:
-	int loadFile();
 	void parseSvg();
-	void split();
-	char* toCharArr(const String&, size_t index);
-	Figure* getFig(const char*);
-	void printFigures() const;
 };

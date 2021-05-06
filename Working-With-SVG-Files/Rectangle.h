@@ -15,4 +15,5 @@ public:
 	~Rectangle();
 
 	void print() const override;
+	void loadDataFromFile(std::istream&) override;
 };

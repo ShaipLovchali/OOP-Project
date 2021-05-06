@@ -43,3 +43,9 @@ void Rectangle::print() const
 	std::cout << "Rectangle's color is: " << this->fillColor << std::endl;
 }
 
+void Rectangle::loadDataFromFile(std::istream& in)
+{
+	fillColor = new char[32];
+	in >> x >> y >> width >> height >> fillColor;
+}
+

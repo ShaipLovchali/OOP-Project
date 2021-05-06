@@ -44,7 +44,6 @@ public:
 
 	template<typename T>
 	T toNum();
-
 	friend std::istream& operator>>(std::istream& in, String& other) {
 		other.size = 50;
 		other.data = new char[other.size];
@@ -52,6 +51,7 @@ public:
 		return in;
 	}
 	void print(); //Извежда на стандартния изход низ
+	double stod();
 
 };
 
@@ -60,9 +60,23 @@ inline T String::toNum()
 {
 	T result = 0;
 
-	for (size_t i = 0; i < size; ++i)
-	{
-		result += (data[i] - '0') * pow(10, (size - i - 1));
+	if (data[0] == '-') {
+		data[0] = '0';
+		for (size_t i = 0; i < size; ++i)
+		{
+			result += (data[i] - '0') * pow(10, (size - i - 1));
+		}
+		result *= -1;
 	}
+	else {
+		for (size_t i = 0; i < size; ++i)
+		{
+			result += (data[i] - '0') * pow(10, (size - i - 1));
+		}
+	}
+
+	// "1.1"
+	// 
+
 	return result;
 }

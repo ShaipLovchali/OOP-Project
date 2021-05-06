@@ -43,3 +43,9 @@ void Line::print() const
 	std::cout << "Line's y2: " << this->y2 << std::endl;
 	std::cout << "Line's fill color: " << this->fillColor << std::endl;
 }
+
+void Line::loadDataFromFile(std::istream& in)
+{
+	fillColor = new char[32];
+	in >> x >> y >> x2 >> y2 >> fillColor;
+}

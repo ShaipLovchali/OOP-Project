@@ -334,3 +334,38 @@ void String::print()
 	}
 	std::cout << std::endl;
 }
+
+double String::stod()
+{
+	double dbl_one = 0;
+	double dbl_two = 0;
+	bool dec_pt = false;
+
+	for (int i = 0; i < size; i++)
+	{
+		if (data[i] == '.') {
+			dec_pt = true;
+		}
+	}
+
+	int position = find(".");
+	if (!dec_pt) {
+		position = size;
+	}
+
+	for (int i = 0; i < position; ++i)
+	{
+		dbl_one += (data[i] - '0') * pow(10, (position - i));
+	}
+
+	dbl_one /= 10;
+
+	int index = 1;
+	for (int i = position + 1; i < size; i++)
+	{
+		dbl_two += (data[i] - '0') / pow(10, index);
+		index++;
+	}
+
+	return dbl_one + dbl_two;
+}

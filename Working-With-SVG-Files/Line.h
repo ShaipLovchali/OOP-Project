@@ -15,4 +15,5 @@ public:
 	~Line();
 
 	void print() const override;
+	void loadDataFromFile(std::istream&) override;
 };

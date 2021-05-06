@@ -41,3 +41,9 @@ void Circle::print() const
 	std::cout << "Circle's radius is: " << this->r << std::endl;
 	std::cout << "Circle's color is: " << this->fillColor << std::endl;
 }
+
+void Circle::loadDataFromFile(std::istream& in)
+{
+	fillColor = new char[32];
+	in >> x >> y >> r >> fillColor;
+}
