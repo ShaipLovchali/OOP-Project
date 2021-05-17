@@ -52,5 +52,5 @@ void Circle::loadDataFromFile(std::istream& in)
 
 void Circle::saveDataToFile(std::ostream& out)
 {
-	out << "<circle cx=\"" << this->x << "\" cy=\"" << this->y << "\" r=\"" << this->r << "\" fill=\"" << this->fillColor << "\" />";
+	out << "\t" << "<circle cx=\"" << this->x << "\" cy=\"" << this->y << "\" r=\"" << this->r << "\" fill=\"" << this->fillColor << "\" />";
 }

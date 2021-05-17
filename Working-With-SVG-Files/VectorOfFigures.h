@@ -4,6 +4,7 @@
 #include "Circle.h"
 #include "Ellipse.h"
 #include "Vector.cpp"
+#include "String.h"
 #include <fstream>
 
 class VectorOfFigures {
@@ -20,5 +21,6 @@ public:
 
 	size_t size() const;
 	void printFigures() const;
-	void saveFiguresToFile();
+	void saveFiguresToFile(const char*, std::ifstream&);
+	void saveAsFiguresToFile(const char*, std::ifstream&);
 };

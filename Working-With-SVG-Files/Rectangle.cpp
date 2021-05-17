@@ -53,7 +53,7 @@ void Rectangle::loadDataFromFile(std::istream& in)
 
 void Rectangle::saveDataToFile(std::ostream& out)
 {
-	out << "<rect x=\"" << this->x << "\" y=\"" << this->y << "\" width=\"" << this->width << "\" height=\"" << this->height << "\" fill=\"" << this->fillColor << "\" />";
+	out << "\t" << "<rect x=\"" << this->x << "\" y=\"" << this->y << "\" width=\"" << this->width << "\" height=\"" << this->height << "\" fill=\"" << this->fillColor << "\" />";
 }
 
 

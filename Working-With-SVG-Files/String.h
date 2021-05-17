@@ -46,11 +46,19 @@ public:
 	char* getData() const;
 
 	friend std::istream& operator>>(std::istream& in, String& other) {
-		other.size = 150;
+		other.size = 60;
 		other.data = new char[other.size];
 		in.getline(other.data, other.size);
+		
 		return in;
 	}
+	friend std::ostream& operator<<(std::ostream& out, const String& other) {
+		for (size_t i = 0; i < other.size; ++i) {
+			out << other.data[i];
+		}
+		return out;
+	}
+
 	void print(); //Извежда на стандартния изход низ
 
 };

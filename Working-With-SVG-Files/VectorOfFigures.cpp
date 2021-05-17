@@ -1,4 +1,5 @@
 #include "VectorOfFigures.h"
+#include <string>
 
 VectorOfFigures::VectorOfFigures() : figures(){}
 
@@ -75,12 +76,41 @@ void VectorOfFigures::printFigures() const
 	}
 }
 
-void VectorOfFigures::saveFiguresToFile()
+void VectorOfFigures::saveFiguresToFile(const char* fileName, std::ifstream& in)
 {
 	std::ofstream out("text.txt");
-	for (size_t i = 0; i < figures.getCapacity(); ++i)
-	{
-		this->figures[i]->saveDataToFile(out);
+	char line[100];
+
+	while (in.getline(line, 100)) {
+		String line2(line);
+		if (line2.find("<svg>") != -1) {
+			out << "<svg>\n";
+			for (size_t i = 0; i < figures.getCapacity(); ++i)
+			{
+				this->figures[i]->saveDataToFile(out);
+				out << "\n";
+			}
+			break;
+		}
+		out << line2;
+		out << "\n";
+	}
+	out << "</svg>";
+	out.close();
+	in.close();
+
+	remove(fileName);
+	std::rename("text.txt", fileName);
+	in.open(fileName);
+}
+
+void VectorOfFigures::saveAsFiguresToFile(const char* newFileName, std::ifstream& in)
+{
+	std::ofstream out(newFileName);
+	char line[100];
+	while (in.getline(line, 100)) {
+		String line2(line);
+		out << line2;
 		out << "\n";
 	}
 	out.close();

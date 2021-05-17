@@ -54,5 +54,5 @@ void Ellipse::loadDataFromFile(std::istream& in)
 
 void Ellipse::saveDataToFile(std::ostream& out)
 {
-	out << "<ellipse cx=\"" << this->x << "\" cy=\"" << this->y << "\" rx=\"" << this->rx << "\" ry=\"" << this->ry << "\" fill=\"" << this->fillColor << "\" />";
+	out << "\t" << "<ellipse cx=\"" << this->x << "\" cy=\"" << this->y << "\" rx=\"" << this->rx << "\" ry=\"" << this->ry << "\" fill=\"" << this->fillColor << "\" />";
 }
