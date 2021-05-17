@@ -49,3 +49,8 @@ void Circle::loadDataFromFile(std::istream& in)
 	fillColor = new char[32];
 	in >> x >> y >> r >> fillColor;
 }
+
+void Circle::saveDataToFile(std::ostream& out)
+{
+	out << "<circle cx=\"" << this->x << "\" cy=\"" << this->y << "\" r=\"" << this->r << "\" fill=\"" << this->fillColor << "\" />";
+}

@@ -16,4 +16,5 @@ public:
 
 	void print() const override;
 	void loadDataFromFile(std::istream&) override;
+	void saveDataToFile(std::ostream&) override;
 };

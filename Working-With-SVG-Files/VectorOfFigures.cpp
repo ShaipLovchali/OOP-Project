@@ -27,8 +27,8 @@ Figure* VectorOfFigures::getFigureType(const char* figureType)
 	else if (strcmp(figureType, "circle") == 0) {
 		return new Circle();
 	}
-	else if (strcmp(figureType, "line") == 0) {
-		return new Line();
+	else if (strcmp(figureType, "ellipse") == 0) {
+		return new Ellipse();
 	}
 }
 
@@ -73,4 +73,15 @@ void VectorOfFigures::printFigures() const
 	{
 		figures[i]->print();
 	}
+}
+
+void VectorOfFigures::saveFiguresToFile()
+{
+	std::ofstream out("text.txt");
+	for (size_t i = 0; i < figures.getCapacity(); ++i)
+	{
+		this->figures[i]->saveDataToFile(out);
+		out << "\n";
+	}
+	out.close();
 }

@@ -19,4 +19,5 @@ public:
 
 	virtual void print() const = 0;
 	virtual void loadDataFromFile(std::istream&) = 0;
+	virtual void saveDataToFile(std::ostream&) = 0;
 };

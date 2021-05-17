@@ -53,6 +53,7 @@ void Menu::determineCommand(ParseData& parser, VectorOfFigures& v)
 		std::cout << "Closed file.. " << std::endl;
 	}
 	else if (splitted[0] == "save") {
+		v.saveFiguresToFile();
 		std::cout << "Saved file.. " << std::endl;
 	}
 	else if (splitted[0] == "saveas") {
@@ -82,10 +83,10 @@ void Menu::determineCommand(ParseData& parser, VectorOfFigures& v)
 			v.create(fig);
 			std::cout << "Successfully created circle" << std::endl;
 		}
-		else if (splitted[1] == "line") {
-			fig = new Line(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
+		else if (splitted[1] == "ellipse") {
+			fig = new Ellipse(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
 			v.create(fig);
-			std::cout << "Successfully created line" << std::endl;
+			std::cout << "Successfully created ellipse" << std::endl;
 		}
 		else {
 			std::cout << "Invalid figure type" << std::endl;

@@ -2,7 +2,7 @@
 #include "Figure.h"
 #include "Rectangle.h"
 #include "Circle.h"
-#include "Line.h"
+#include "Ellipse.h"
 #include "Vector.cpp"
 #include <fstream>
 
@@ -20,4 +20,5 @@ public:
 
 	size_t size() const;
 	void printFigures() const;
+	void saveFiguresToFile();
 };
