@@ -14,7 +14,10 @@ public:
 	void loadFromStream();
 	Figure* getFigureType(const char*);
 	void create(Figure*);
-	void erase(size_t n);
+	void erase(size_t);
+	void translateAll(double, double);
+	void translate(size_t, double, double);
+
 	size_t size() const;
 	void printFigures() const;
 };

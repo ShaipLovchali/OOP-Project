@@ -1,5 +1,6 @@
 #pragma once
 #include "ParseData.h"
+#include "String.h"
 #include "VectorOfFigures.h"
 
 class Menu {
@@ -9,7 +10,6 @@ private:
 
 	void determineCommand(ParseData&, VectorOfFigures&);
 	void splitCommand();
-	char* toCharArr(const String&);
 public:
 	void start();
 };

@@ -42,41 +42,15 @@ public:
 	int compare(const String&); //Сравнява два низа лексикографски
 	void swap(String&); //Разменя стойностите на два низа
 
-	template<typename T>
-	T toNum();
+	double stod();
+	char* getData() const;
+
 	friend std::istream& operator>>(std::istream& in, String& other) {
-		other.size = 50;
+		other.size = 150;
 		other.data = new char[other.size];
 		in.getline(other.data, other.size);
 		return in;
 	}
 	void print(); //Извежда на стандартния изход низ
-	double stod();
 
 };
-
-template<typename T>
-inline T String::toNum()
-{
-	T result = 0;
-
-	if (data[0] == '-') {
-		data[0] = '0';
-		for (size_t i = 0; i < size; ++i)
-		{
-			result += (data[i] - '0') * pow(10, (size - i - 1));
-		}
-		result *= -1;
-	}
-	else {
-		for (size_t i = 0; i < size; ++i)
-		{
-			result += (data[i] - '0') * pow(10, (size - i - 1));
-		}
-	}
-
-	// "1.1"
-	// 
-
-	return result;
-}

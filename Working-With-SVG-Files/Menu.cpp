@@ -1,7 +1,6 @@
 #pragma once
 #include "Menu.h"
 
-
 void Menu::start()
 {
 	ParseData parser;
@@ -21,6 +20,7 @@ void Menu::start()
 void Menu::splitCommand()
 {
 	splitted.clear();
+
 	String subStr;
 	for (size_t i = 0; command[i]; ++i)
 	{
@@ -35,22 +35,10 @@ void Menu::splitCommand()
 	splitted.push_back(subStr);
 }
 
-char* Menu::toCharArr(const String& str)
-{
-	char* fillColor = new char[str.getSize() + 1];
-	for (size_t i = 0; i < str.getSize(); i++)
-	{
-		fillColor[i] = str[i];
-	}
-	fillColor[str.getSize()] = '\0';
-
-	return fillColor;
-}
-
 void Menu::determineCommand(ParseData& parser, VectorOfFigures& v)
 {
 	if (splitted[0] == "open") {
-		char* fileName = toCharArr(splitted[1]);
+		char* fileName = splitted[1].getData();
 		std::ifstream in(fileName);
 		if (!in) {
 			std::cout << "No such file existing" << std::endl;
@@ -58,6 +46,7 @@ void Menu::determineCommand(ParseData& parser, VectorOfFigures& v)
 		else {
 			std::cout << "Successfully opened file" << std::endl;
 		}
+
 		in.close();
 	}
 	else if (splitted[0] == "close") {
@@ -82,16 +71,20 @@ void Menu::determineCommand(ParseData& parser, VectorOfFigures& v)
 		v.printFigures();
 	}
 	else if (splitted[0] == "create") {
+		Figure* fig;
 		if (splitted[1] == "rect") {
-			v.create(new Rectangle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), toCharArr(splitted[6])));
+			fig = new Rectangle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
+			v.create(fig);
 			std::cout << "Successfully created rectangle" << std::endl;
 		}
 		else if (splitted[1] == "circle") {
-			v.create(new Circle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), toCharArr(splitted[5])));
+			fig = new Circle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].getData());
+			v.create(fig);
 			std::cout << "Successfully created circle" << std::endl;
 		}
 		else if (splitted[1] == "line") {
-			v.create(new Line(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), toCharArr(splitted[6])));
+			fig = new Line(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
+			v.create(fig);
 			std::cout << "Successfully created line" << std::endl;
 		}
 		else {
@@ -109,9 +102,14 @@ void Menu::determineCommand(ParseData& parser, VectorOfFigures& v)
 		}
 	}
 	else if (splitted[0] == "translate") {
+		double vertical = splitted[1].stod();
+		double horizontal = splitted[2].stod();
+
+		v.translateAll(vertical, horizontal);
 		std::cout << "Translated.. " << std::endl;
 	}
 	else if (splitted[0] == "within") {
+
 		std::cout << "Within.. " << std::endl;
 	}
 	else if (splitted[0] == "exit") {

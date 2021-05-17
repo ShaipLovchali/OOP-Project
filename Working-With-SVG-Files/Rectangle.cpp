@@ -1,9 +1,11 @@
 #include "Rectangle.h"
 
 void Rectangle::copy(const Rectangle& other) {
-	setFiguresData(other.x, other.y, other.fillColor);
+	setX(other.x);
+	setY(other.y);
 	this->width = other.width;
 	this->height = other.height;
+	setFillColor(other.fillColor);
 }
 
 void Rectangle::erase()
@@ -48,4 +50,5 @@ void Rectangle::loadDataFromFile(std::istream& in)
 	fillColor = new char[32];
 	in >> x >> y >> width >> height >> fillColor;
 }
+
 

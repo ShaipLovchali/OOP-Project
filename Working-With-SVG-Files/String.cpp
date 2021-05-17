@@ -96,7 +96,6 @@ String String::concat(const String& other)
 String* String::split(const char* delimiter)
 {
 	String* result = new String[delimitersCounter(*this, delimiter) + 1];
-	
 	size_t counter = 0;
 
 	size_t i = 0;
@@ -337,35 +336,36 @@ void String::print()
 
 double String::stod()
 {
-	double dbl_one = 0;
-	double dbl_two = 0;
-	bool dec_pt = false;
+	double beforeDecimalPoint = 0;
+	double afterDecimalPoint = 0;
+	bool isNegative = false;
 
-	for (int i = 0; i < size; i++)
-	{
-		if (data[i] == '.') {
-			dec_pt = true;
-		}
+	if (data[0] == '-') {
+		data[0] = '0';
+		isNegative = true;
 	}
 
 	int position = find(".");
-	if (!dec_pt) {
+	if (position == -1) {
 		position = size;
 	}
 
 	for (int i = 0; i < position; ++i)
 	{
-		dbl_one += (data[i] - '0') * pow(10, (position - i));
+		beforeDecimalPoint += (data[i] - '0') * pow(10, (position - i - 1));
 	}
-
-	dbl_one /= 10;
 
 	int index = 1;
 	for (int i = position + 1; i < size; i++)
 	{
-		dbl_two += (data[i] - '0') / pow(10, index);
-		index++;
+		afterDecimalPoint += (data[i] - '0') / pow(10, index);
+		++index;
 	}
 
-	return dbl_one + dbl_two;
+	return  isNegative ? (-1) * beforeDecimalPoint + afterDecimalPoint : beforeDecimalPoint + afterDecimalPoint;
+}
+
+char* String::getData() const
+{
+	return this->data;
 }

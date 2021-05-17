@@ -42,6 +42,26 @@ void VectorOfFigures::erase(size_t n)
 	figures.pop_by_data(figures[n - 1]);	
 }
 
+void VectorOfFigures::translateAll(double vertical, double horizontal)
+{
+	for (size_t i = 0; i < figures.getCapacity(); ++i)
+	{
+		this->figures[i]->setX(this->figures[i]->getX() + vertical);
+		this->figures[i]->setY(this->figures[i]->getY() + horizontal);
+	}
+}
+
+void VectorOfFigures::translate(size_t index, double vertical, double horizontal)
+{
+	for (size_t i = 0; i < figures.getCapacity(); ++i)
+	{
+		if (i + 1 == index) {
+			this->figures[i]->setX(this->figures[i]->getX() + vertical);
+			this->figures[i]->setY(this->figures[i]->getY() + horizontal);
+		}
+	}
+}
+
 size_t VectorOfFigures::size() const
 {
 	return figures.getCapacity();

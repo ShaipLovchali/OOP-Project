@@ -2,8 +2,10 @@
 
 void Circle::copy(const Circle& other)
 {
-	setFiguresData(other.x, other.y, other.fillColor);
+	setX(other.x);
+	setY(other.y);
 	this->r = other.r;
+	setFillColor(other.fillColor);
 }
 
 void Circle::erase()
