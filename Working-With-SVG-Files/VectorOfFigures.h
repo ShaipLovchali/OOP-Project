@@ -14,10 +14,11 @@ public:
 	VectorOfFigures();
 	void loadFromStream();
 	Figure* getFigureType(const char*);
-	void create(Figure*);
-	void erase(size_t);
+	void create(Vector<String>&);
+	void erase(int);
 	void translateAll(double, double);
-	void translate(size_t, double, double);
+	void translate(int, double, double);
+	void within(const String&);
 
 	size_t size() const;
 	void printFigures() const;

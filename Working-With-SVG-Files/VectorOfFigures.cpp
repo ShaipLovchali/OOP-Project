@@ -33,14 +33,39 @@ Figure* VectorOfFigures::getFigureType(const char* figureType)
 	}
 }
 
-void VectorOfFigures::create(Figure* figure)
+void VectorOfFigures::create(Vector<String>& splitted)
 {
-	figures.push_back(figure);
+	char* figureType = splitted[1].getData();
+	Figure* fig;
+
+	if (strcmp(figureType, "rect") == 0) {
+		fig = new Rectangle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
+		std::cout << "Successfully created rectangle" << std::endl;
+	}
+	else if (strcmp(figureType, "circle") == 0) {
+		fig = new Circle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].getData());
+		std::cout << "Successfully created circle" << std::endl;
+	}
+	else if (strcmp(figureType, "ellipse") == 0) {
+		fig = new Ellipse(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
+		std::cout << "Successfully created ellipse" << std::endl;
+	}
+	else {
+		std::cout << "Invalid figure type" << std::endl;
+		return;
+	}
+
+	figures.push_back(fig);
 }
 
-void VectorOfFigures::erase(size_t n)
+void VectorOfFigures::erase(int index)
 {
-	figures.pop_by_data(figures[n - 1]);	
+	if (index <= 0 || index > figures.getCapacity()) {
+		std::cout << "Invalid index of figure" << std::endl;
+		return;
+	}
+	figures.pop_by_data(figures[index - 1]);
+	std::cout << "Erased figure " << index << std::endl;
 }
 
 void VectorOfFigures::translateAll(double vertical, double horizontal)
@@ -50,10 +75,16 @@ void VectorOfFigures::translateAll(double vertical, double horizontal)
 		this->figures[i]->setX(this->figures[i]->getX() + vertical);
 		this->figures[i]->setY(this->figures[i]->getY() + horizontal);
 	}
+	std::cout << "Translated all figures" << std::endl;
 }
 
-void VectorOfFigures::translate(size_t index, double vertical, double horizontal)
+void VectorOfFigures::translate(int index, double vertical, double horizontal)
 {
+	if (index <= 0 || index > figures.getCapacity()) {
+		std::cout << "Invalid index of figure" << std::endl;
+		return;
+	}
+
 	for (size_t i = 0; i < figures.getCapacity(); ++i)
 	{
 		if (i + 1 == index) {
@@ -61,6 +92,7 @@ void VectorOfFigures::translate(size_t index, double vertical, double horizontal
 			this->figures[i]->setY(this->figures[i]->getY() + horizontal);
 		}
 	}
+	std::cout << "Translated figure number " << index << std::endl;
 }
 
 size_t VectorOfFigures::size() const

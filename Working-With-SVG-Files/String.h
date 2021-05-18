@@ -41,6 +41,7 @@ public:
 	int findWithIndex(int, const char*); // Използвам метода за намиране на индекса на разделителя, от даден индекс натам
 	int compare(const String&); //Сравнява два низа лексикографски
 	void swap(String&); //Разменя стойностите на два низа
+	String getValue(const char&);
 
 	double stod();
 	char* getData() const;

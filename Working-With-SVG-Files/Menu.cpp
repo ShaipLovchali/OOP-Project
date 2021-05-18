@@ -89,44 +89,32 @@ void Menu::determineCommand(ParseData& parser, VectorOfFigures& v, std::ifstream
 					v.printFigures();
 				}
 				else if (splitted[0] == "create") {
-					Figure* fig;
-					if (splitted[1] == "rect") {
-						fig = new Rectangle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
-						v.create(fig);
-						std::cout << "Successfully created rectangle" << std::endl;
-					}
-					else if (splitted[1] == "circle") {
-						fig = new Circle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].getData());
-						v.create(fig);
-						std::cout << "Successfully created circle" << std::endl;
-					}
-					else if (splitted[1] == "ellipse") {
-						fig = new Ellipse(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
-						v.create(fig);
-						std::cout << "Successfully created ellipse" << std::endl;
-					}
-					else {
-						std::cout << "Invalid figure type" << std::endl;
-					}
+					v.create(splitted);
 				}
 				else if (splitted[0] == "erase") {
-					int num = splitted[1].stod();
-					if (num > 0 && num <= v.size()) {
-						v.erase(num);
-						std::cout << "Erased figure " << num << std::endl;
-					}
-					else {
-						std::cout << "There is no figure number " << num << std::endl;
-					}
+					int index = splitted[1].stod();
+					v.erase(index);
 				}
 				else if (splitted[0] == "translate") {
-					double vertical = splitted[1].stod();
-					double horizontal = splitted[2].stod();
+					double vertical;
+					double horizontal;
 
-					v.translateAll(vertical, horizontal);
-					std::cout << "Translated.. " << std::endl;
+					if (splitted[1].find("vertical") != -1) {
+						vertical = splitted[1].getValue('=').stod();
+						horizontal = splitted[2].getValue('=').stod();
+						v.translateAll(vertical, horizontal);
+					}
+					else {
+						int index = splitted[1].stod();
+						vertical = splitted[2].getValue('=').stod();
+						horizontal = splitted[3].getValue('=').stod();
+						v.translate(index, vertical, horizontal);
+					}
 				}
 				else if (splitted[0] == "within") {
+					/*String region = splitted[1];
+
+					v.within(region);*/
 					std::cout << "Within.. " << std::endl;
 				}
 				else {

@@ -325,6 +325,21 @@ void String::swap(String& other)
 	mySwap(*this, other);
 }
 
+String String::getValue(const char& c)
+{
+	String result;
+	for (size_t i = 0; i < size; ++i)
+	{
+		if (data[i] == c) {
+			for (size_t j = i + 1; j < size; j++)
+			{
+				result.pushBack(data[j]);
+			}
+		}
+	}
+	return result;
+}
+
 void String::print()
 {
 	for (size_t i = 0; i < size; ++i)
