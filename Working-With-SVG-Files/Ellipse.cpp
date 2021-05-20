@@ -56,3 +56,19 @@ void Ellipse::saveDataToFile(std::ostream& out)
 {
 	out << "\t" << "<ellipse cx=\"" << this->x << "\" cy=\"" << this->y << "\" rx=\"" << this->rx << "\" ry=\"" << this->ry << "\" fill=\"" << this->fillColor << "\" />";
 }
+
+bool Ellipse::withinRect(double x, double y, int width, int height)
+{
+	return this->x >= x && this->y >= y && this->x <= width && this->y <= height && this->rx <= width && this->ry <= height
+		&&(this->x + this->rx) <= width && (this->y + this->ry) <= height;
+}
+
+bool Ellipse::withinCircle(double, double, double)
+{
+	return false;
+}
+
+bool Ellipse::withinEllipse(double, double, double, double)
+{
+	return false;
+}

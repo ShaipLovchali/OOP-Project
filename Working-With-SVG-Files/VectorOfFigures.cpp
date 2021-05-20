@@ -95,6 +95,32 @@ void VectorOfFigures::translate(int index, double vertical, double horizontal)
 	std::cout << "Translated figure number " << index << std::endl;
 }
 
+void VectorOfFigures::within(Vector<String>& splitted)
+{
+	for (size_t i = 0; i < figures.getCapacity(); ++i)
+	{
+		bool isWithin = false;
+		if (splitted[1] == "rect") {
+			isWithin = figures[i]->withinRect(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod());
+			if (isWithin) {
+				figures[i]->print();
+			}
+		}
+		else if (splitted[1] == "circle") {
+			isWithin = figures[i]->withinCircle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod());
+			if (isWithin) {
+				figures[i]->print();
+			}
+		}
+		else if (splitted[1] == "ellipse") {
+			isWithin = figures[i]->withinEllipse(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod());
+			if (isWithin) {
+				figures[i]->print();
+			}
+		}
+	}
+}
+
 size_t VectorOfFigures::size() const
 {
 	return figures.getCapacity();

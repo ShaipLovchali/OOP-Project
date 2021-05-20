@@ -54,3 +54,19 @@ void Circle::saveDataToFile(std::ostream& out)
 {
 	out << "\t" << "<circle cx=\"" << this->x << "\" cy=\"" << this->y << "\" r=\"" << this->r << "\" fill=\"" << this->fillColor << "\" />";
 }
+
+bool Circle::withinRect(double x, double y, int width, int height)
+{
+	return this->x >= x && this->y >= y && this->x <= width && this->y <= height && this->r <= width && this->r <= height
+		 && (this->x + this->r) <= width && (this->y + this->r) <= height;
+}
+
+bool Circle::withinCircle(double, double, double)
+{
+	return false;
+}
+
+bool Circle::withinEllipse(double, double, double, double)
+{
+	return false;
+}

@@ -112,10 +112,7 @@ void Menu::determineCommand(ParseData& parser, VectorOfFigures& v, std::ifstream
 					}
 				}
 				else if (splitted[0] == "within") {
-					/*String region = splitted[1];
-
-					v.within(region);*/
-					std::cout << "Within.. " << std::endl;
+					v.within(splitted);
 				}
 				else {
 					std::cout << "You have enterned an invalid command!" << std::endl;

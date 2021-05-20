@@ -17,4 +17,7 @@ public:
 	void print() const override;
 	void loadDataFromFile(std::istream&) override;
 	void saveDataToFile(std::ostream&) override;
+	bool withinRect(double, double, int, int);
+	bool withinCircle(double, double, double);
+	bool withinEllipse(double, double, double, double);
 };

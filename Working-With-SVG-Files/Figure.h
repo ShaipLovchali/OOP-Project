@@ -20,4 +20,7 @@ public:
 	virtual void print() const = 0;
 	virtual void loadDataFromFile(std::istream&) = 0;
 	virtual void saveDataToFile(std::ostream&) = 0;
+	virtual bool withinRect(double, double, int, int) = 0;
+	virtual bool withinCircle(double, double, double) = 0;
+	virtual bool withinEllipse(double, double, double, double) = 0;
 };

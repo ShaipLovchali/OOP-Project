@@ -1,4 +1,5 @@
 #pragma once
+#include "ParseData.h"
 #include "Figure.h"
 #include "Rectangle.h"
 #include "Circle.h"
@@ -18,7 +19,7 @@ public:
 	void erase(int);
 	void translateAll(double, double);
 	void translate(int, double, double);
-	void within(const String&);
+	void within(Vector<String>&);
 
 	size_t size() const;
 	void printFigures() const;

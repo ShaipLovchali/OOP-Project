@@ -56,4 +56,19 @@ void Rectangle::saveDataToFile(std::ostream& out)
 	out << "\t" << "<rect x=\"" << this->x << "\" y=\"" << this->y << "\" width=\"" << this->width << "\" height=\"" << this->height << "\" fill=\"" << this->fillColor << "\" />";
 }
 
+bool Rectangle::withinRect(double x, double y, int width, int height)
+{
+	return this->x >= x && this->y >= y && this->x <= width && this->y <= height && this->width <= width && this->height <= height;
+}
+
+bool Rectangle::withinCircle(double x, double y, double r)
+{
+	return false;
+}
+
+bool Rectangle::withinEllipse(double, double, double, double)
+{
+	return false;
+}
+
 
