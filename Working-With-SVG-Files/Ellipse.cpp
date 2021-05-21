@@ -39,11 +39,7 @@ Ellipse::~Ellipse()
 
 void Ellipse::print() const
 {
-	std::cout << "Ellipse's x1: " << this->x << std::endl;
-	std::cout << "Ellipse's y1: " << this->y << std::endl;
-	std::cout << "Ellipse's rx: " << this->rx << std::endl;
-	std::cout << "Ellipse's ry: " << this->ry << std::endl;
-	std::cout << "Ellipse's fill color: " << this->fillColor << std::endl;
+	std::cout << "Ellipse " << this->x << " " << this->y << " " << this->rx << " " << this->ry << " " << this->fillColor << std::endl;
 }
 
 void Ellipse::loadDataFromFile(std::istream& in)
@@ -57,18 +53,13 @@ void Ellipse::saveDataToFile(std::ostream& out)
 	out << "\t" << "<ellipse cx=\"" << this->x << "\" cy=\"" << this->y << "\" rx=\"" << this->rx << "\" ry=\"" << this->ry << "\" fill=\"" << this->fillColor << "\" />";
 }
 
-bool Ellipse::withinRect(double x, double y, int width, int height)
+bool Ellipse::withinRect(double x2, double y2, int width, int height)
 {
-	return this->x >= x && this->y >= y && this->x <= width && this->y <= height && this->rx <= width && this->ry <= height
-		&&(this->x + this->rx) <= width && (this->y + this->ry) <= height;
+	return x + rx <= width && y + ry <= height;
 }
 
-bool Ellipse::withinCircle(double, double, double)
+bool Ellipse::withinCircle(double x2, double y2, double r)
 {
-	return false;
+	return x + rx <= r && y + ry <= r;
 }
 
-bool Ellipse::withinEllipse(double, double, double, double)
-{
-	return false;
-}

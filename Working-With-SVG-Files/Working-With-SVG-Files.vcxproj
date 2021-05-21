@@ -146,6 +146,7 @@
     <ClCompile Include="ParseData.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="String.cpp" />
+    <ClCompile Include="Validator.cpp" />
     <ClCompile Include="VectorOfFigures.cpp" />
     <ClCompile Include="VectorOfFigures.h" />
     <ClCompile Include="Working-With-SVG-Files.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="ParseData.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="Validator.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="figures.svg" />

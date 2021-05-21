@@ -45,6 +45,9 @@
     <ClCompile Include="VectorOfFigures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Validator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rectangle.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="String.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Validator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

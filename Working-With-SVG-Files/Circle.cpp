@@ -38,10 +38,7 @@ Circle::~Circle()
 
 void Circle::print() const
 {
-	std::cout << "Circle's x coordinate is: " << this->x << std::endl;
-	std::cout << "Circle's y coordinate is: " << this->y << std::endl;
-	std::cout << "Circle's radius is: " << this->r << std::endl;
-	std::cout << "Circle's color is: " << this->fillColor << std::endl;
+	std::cout << "Circle " << this->x << " " << this->y << " " << this->r << " " << this->fillColor << std::endl;
 }
 
 void Circle::loadDataFromFile(std::istream& in)
@@ -55,18 +52,13 @@ void Circle::saveDataToFile(std::ostream& out)
 	out << "\t" << "<circle cx=\"" << this->x << "\" cy=\"" << this->y << "\" r=\"" << this->r << "\" fill=\"" << this->fillColor << "\" />";
 }
 
-bool Circle::withinRect(double x, double y, int width, int height)
+bool Circle::withinRect(double x2, double y2, int width, int height)
 {
-	return this->x >= x && this->y >= y && this->x <= width && this->y <= height && this->r <= width && this->r <= height
-		 && (this->x + this->r) <= width && (this->y + this->r) <= height;
+	return x + r <= width && y + r <= height;
 }
 
-bool Circle::withinCircle(double, double, double)
+bool Circle::withinCircle(double x2, double y2, double r2)
 {
-	return false;
+	return x + r <= r2 && y + r <= r2;
 }
 
-bool Circle::withinEllipse(double, double, double, double)
-{
-	return false;
-}

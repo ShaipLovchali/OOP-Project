@@ -38,11 +38,7 @@ Rectangle::~Rectangle()
 
 void Rectangle::print() const
 {
-	std::cout << "Rectangle's x coordinate is: " <<  this->x << std::endl;
-	std::cout << "Rectangle's y coordinate is: " << this->y << std::endl;
-	std::cout << "Rectangle's width is: " << this->width << std::endl;
-	std::cout << "Rectangle's height is: " << this->height << std::endl;
-	std::cout << "Rectangle's color is: " << this->fillColor << std::endl;
+	std::cout << "Rectangle " << this->x << " " << this->y << " " << this->width << " " << this->height << " " << this->fillColor << std::endl;
 }
 
 void Rectangle::loadDataFromFile(std::istream& in)
@@ -56,19 +52,15 @@ void Rectangle::saveDataToFile(std::ostream& out)
 	out << "\t" << "<rect x=\"" << this->x << "\" y=\"" << this->y << "\" width=\"" << this->width << "\" height=\"" << this->height << "\" fill=\"" << this->fillColor << "\" />";
 }
 
-bool Rectangle::withinRect(double x, double y, int width, int height)
+bool Rectangle::withinRect(double x2, double y2, int width2, int height2)
 {
-	return this->x >= x && this->y >= y && this->x <= width && this->y <= height && this->width <= width && this->height <= height;
+	return x + width <= width2 && y + height <= height2;
 }
 
-bool Rectangle::withinCircle(double x, double y, double r)
+bool Rectangle::withinCircle(double x2, double y2, double r)
 {
-	return false;
+	return x + width <= r && y + height <= r;
 }
 
-bool Rectangle::withinEllipse(double, double, double, double)
-{
-	return false;
-}
 
 

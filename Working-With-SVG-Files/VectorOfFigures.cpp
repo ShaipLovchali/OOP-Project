@@ -36,7 +36,7 @@ Figure* VectorOfFigures::getFigureType(const char* figureType)
 void VectorOfFigures::create(Vector<String>& splitted)
 {
 	char* figureType = splitted[1].getData();
-	Figure* fig;
+	Figure* fig = nullptr;
 
 	if (strcmp(figureType, "rect") == 0) {
 		fig = new Rectangle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
@@ -50,20 +50,12 @@ void VectorOfFigures::create(Vector<String>& splitted)
 		fig = new Ellipse(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
 		std::cout << "Successfully created ellipse" << std::endl;
 	}
-	else {
-		std::cout << "Invalid figure type" << std::endl;
-		return;
-	}
 
 	figures.push_back(fig);
 }
 
 void VectorOfFigures::erase(int index)
 {
-	if (index <= 0 || index > figures.getCapacity()) {
-		std::cout << "Invalid index of figure" << std::endl;
-		return;
-	}
 	figures.pop_by_data(figures[index - 1]);
 	std::cout << "Erased figure " << index << std::endl;
 }
@@ -72,24 +64,19 @@ void VectorOfFigures::translateAll(double vertical, double horizontal)
 {
 	for (size_t i = 0; i < figures.getCapacity(); ++i)
 	{
-		this->figures[i]->setX(this->figures[i]->getX() + vertical);
-		this->figures[i]->setY(this->figures[i]->getY() + horizontal);
+		this->figures[i]->setX(this->figures[i]->getX() + horizontal);
+		this->figures[i]->setY(this->figures[i]->getY() + vertical);
 	}
 	std::cout << "Translated all figures" << std::endl;
 }
 
 void VectorOfFigures::translate(int index, double vertical, double horizontal)
 {
-	if (index <= 0 || index > figures.getCapacity()) {
-		std::cout << "Invalid index of figure" << std::endl;
-		return;
-	}
-
 	for (size_t i = 0; i < figures.getCapacity(); ++i)
 	{
 		if (i + 1 == index) {
-			this->figures[i]->setX(this->figures[i]->getX() + vertical);
-			this->figures[i]->setY(this->figures[i]->getY() + horizontal);
+			this->figures[i]->setX(this->figures[i]->getX() + horizontal);
+			this->figures[i]->setY(this->figures[i]->getY() + vertical);
 		}
 	}
 	std::cout << "Translated figure number " << index << std::endl;
@@ -97,27 +84,28 @@ void VectorOfFigures::translate(int index, double vertical, double horizontal)
 
 void VectorOfFigures::within(Vector<String>& splitted)
 {
+	size_t counter = 0;
 	for (size_t i = 0; i < figures.getCapacity(); ++i)
 	{
 		bool isWithin = false;
 		if (splitted[1] == "rect") {
 			isWithin = figures[i]->withinRect(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod());
 			if (isWithin) {
+				++counter;
+				std::cout << counter << ". ";
 				figures[i]->print();
 			}
-		}
-		else if (splitted[1] == "circle") {
+		}else if (splitted[1] == "circle") {
 			isWithin = figures[i]->withinCircle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod());
 			if (isWithin) {
+				++counter;
+				std::cout << counter << ". ";
 				figures[i]->print();
 			}
 		}
-		else if (splitted[1] == "ellipse") {
-			isWithin = figures[i]->withinEllipse(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod());
-			if (isWithin) {
-				figures[i]->print();
-			}
-		}
+	}
+	if (counter == 0) {
+		std::cout << "No figures are located within this region" << std::endl;
 	}
 }
 
@@ -130,6 +118,7 @@ void VectorOfFigures::printFigures() const
 {
 	for (size_t i = 0; i < figures.getCapacity(); ++i)
 	{
+		std::cout << i + 1 << ". ";
 		figures[i]->print();
 	}
 }

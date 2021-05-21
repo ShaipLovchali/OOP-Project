@@ -37,11 +37,12 @@ public:
 	void append(const String&); //Добавя към един низ друг
 	void pushBack(char); //Добавя символ в края на низа
 	void popBack(); //Премахва символ от края на низа
-	int find(const char*); //Търси и връща първия индекс, на който се среща подадения низ или символ. Ако не съществува такъв индекс връща -1;
+	int find(const char*) const; //Търси и връща първия индекс, на който се среща подадения низ или символ. Ако не съществува такъв индекс връща -1;
 	int findWithIndex(int, const char*); // Използвам метода за намиране на индекса на разделителя, от даден индекс натам
 	int compare(const String&); //Сравнява два низа лексикографски
 	void swap(String&); //Разменя стойностите на два низа
-	String getValue(const char&);
+	String getValue(const char&) const;
+	bool isANumber();
 
 	double stod();
 	char* getData() const;

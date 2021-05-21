@@ -257,7 +257,7 @@ void String::popBack()
 	}
 }
 
-int String::find(const char* subString)
+int String::find(const char* subString) const
 {
 	for (size_t i = 0; i < size; ++i)
 	{
@@ -325,7 +325,7 @@ void String::swap(String& other)
 	mySwap(*this, other);
 }
 
-String String::getValue(const char& c)
+String String::getValue(const char& c) const
 {
 	String result;
 	for (size_t i = 0; i < size; ++i)
@@ -338,6 +338,20 @@ String String::getValue(const char& c)
 		}
 	}
 	return result;
+}
+
+bool String::isANumber()
+{
+	if ((data[0] < '0' || data[0] > '9') && data[0] != '-') {
+		return false;
+	}
+	for (size_t i = 1; i < size; ++i)
+	{
+		if (data[i] < '0' || data[i] > '9') {
+			return false;
+		}
+	}
+	return true;
 }
 
 void String::print()
