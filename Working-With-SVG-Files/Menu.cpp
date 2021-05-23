@@ -1,4 +1,3 @@
-#pragma once
 #include "Menu.h"
 
 void Menu::start()
@@ -39,20 +38,25 @@ void Menu::splitCommand()
 }
 
 void Menu::commandOpen(std::ifstream& in, Validator& validator) {
-	char* fileName = splitted[1].getData();
-	bool isValid = validator.validateOpen(in, fileName);
+	bool isValid = validator.validateOpen(in);
 
 	if (isValid) {
+		char* fileName = splitted[1].getData();
 		in.open(fileName);
 		currentFileName = splitted[1];
-		std::cout << "Successfully opened " << std::endl;
+		std::cout << "Successfully opened " << currentFileName << std::endl;
 	}
 }
 
-void Menu::commandClose(std::ifstream& in)
+void Menu::commandClose(std::ifstream& in, Validator& validator)
 {
-	in.close();
-	std::cout << "Successfully closed " << currentFileName << std::endl;
+	char* fileName = splitted[1].getData();
+	bool isValid = validator.validateClose(in, currentFileName.getData());
+	
+	if (isValid) {
+		in.close();
+		std::cout << "Successfully closed " << currentFileName << std::endl;
+	}
 }
 
 void Menu::commandSave(VectorOfFigures& v, std::ifstream& in)
@@ -63,8 +67,7 @@ void Menu::commandSave(VectorOfFigures& v, std::ifstream& in)
 
 void Menu::commandSaveAs(VectorOfFigures& v, std::ifstream& in)
 {
-	char* fileName = splitted[1].getData();
-	v.saveAsFiguresToFile(fileName, in);
+	v.saveAsFiguresToFile(currentFileName.getData(), in);
 	std::cout << "Successfully saved " << currentFileName << " in the path" << std::endl;
 }
 
@@ -123,6 +126,15 @@ void Menu::commandTranslate(VectorOfFigures& v, Validator& validator)
 	}
 }
 
+void Menu::commandWithin(VectorOfFigures& v, Validator& validator)
+{
+	bool isValid = validator.validateWithin();
+	
+	if (isValid) {
+		v.within(splitted);
+	}
+}
+
 void Menu::determineCommand(VectorOfFigures& v, std::ifstream &in, String& currFileName, Validator& validator)
 {
 	if (splitted[0] == "open") {
@@ -137,7 +149,7 @@ void Menu::determineCommand(VectorOfFigures& v, std::ifstream &in, String& currF
 			}
 			else {
 				if (splitted[0] == "close") {
-					commandClose(in);
+					commandClose(in, validator);
 				}
 				else if (splitted[0] == "save") {
 					commandSave(v, in);
@@ -161,7 +173,7 @@ void Menu::determineCommand(VectorOfFigures& v, std::ifstream &in, String& currF
 					commandTranslate(v, validator);
 				}
 				else if (splitted[0] == "within") {
-					v.within(splitted);
+					commandWithin(v, validator);
 				}
 				else {
 					std::cout << "You have enterned an invalid command!" << std::endl;

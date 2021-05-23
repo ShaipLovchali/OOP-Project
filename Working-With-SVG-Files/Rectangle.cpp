@@ -54,12 +54,16 @@ void Rectangle::saveDataToFile(std::ostream& out)
 
 bool Rectangle::withinRect(double x2, double y2, int width2, int height2)
 {
-	return x + width <= width2 && y + height <= height2;
+	return x >= x2 && (x + width) <= (x2 + width2) && y >= y2 && (y + height) <= (y2 + height2);
 }
 
 bool Rectangle::withinCircle(double x2, double y2, double r)
 {
-	return x + width <= r && y + height <= r;
+	bool isCorner1In = sqrt((x - x2) * (x - x2) + (y - y2) * (y - y2)) <= r;
+	bool isCorner2In = sqrt(((x + width) - x2) * ((x + width) - x2) + (y - y2) * (y - y2)) <= r;
+	bool isCorner3In = sqrt((x - x2) * (x - x2) + ((y + height) - y2) * ((y + height) - y2)) <= r;
+	bool isCorner4In = sqrt(((x + width) - x2) * ((x + width) - x2) + ((y + height) - y2) * ((y + height) - y2)) <= r;
+	return isCorner1In && isCorner2In && isCorner3In && isCorner4In;
 }
 
 

@@ -203,6 +203,9 @@ String String::operator+(const String& other)
 
 bool String::operator==(const char* other)
 {
+	if (other == nullptr) {
+		return this->data == nullptr;
+	}
 	if (size != length(other)) {
 		return false;
 	}

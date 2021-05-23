@@ -10,8 +10,10 @@ public:
 	Validator();
 	Validator(const Vector<String>&);
 
-	bool validateOpen(std::ifstream&, const char*);
+	bool validateOpen(std::ifstream&);
+	bool validateClose(std::ifstream&, const char*);
 	bool validateCreate();
 	bool validateIndex(size_t size);
 	bool validateTranslate(const String&, const String&);
+	bool validateWithin();
 };

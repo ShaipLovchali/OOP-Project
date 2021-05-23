@@ -55,11 +55,20 @@ void Ellipse::saveDataToFile(std::ostream& out)
 
 bool Ellipse::withinRect(double x2, double y2, int width, int height)
 {
-	return x + rx <= width && y + ry <= height;
+	if (x2 == 0 && y2 == 0) {
+		return (x + rx) <= width && (y + ry) <= height;
+	}
+	bool isCorner1out = sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y)) >= rx && sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y)) >= ry;
+	bool isCorner2out = sqrt(((x2 + width) - x) * ((x2 + width) - x) + (y2 - y) * (y2 - y)) >= rx && sqrt(((x2 + width) - x) * ((x2 + width) - x) + (y2 - y) * (y2 - y)) >= ry;
+	bool isCorner3out = sqrt((x2 - x) * (x2 - x) + ((y2 + height) - y) * ((y2 + height) - y)) >= rx && sqrt((x2 - x) * (x2 - x) + ((y2 + height) - y) * ((y2 + height) - y)) >= ry;
+	bool isCorner4out = sqrt(((x2 + width) - x) * ((x2 + width) - x) + ((y2 + height) - y) * ((y2 + height) - y)) >= rx && sqrt(((x2 + width) - x) * ((x2 + width) - x) + ((y2 + height) - y) * ((y2 + height) - y)) >= ry;
+	return isCorner1out && isCorner2out && isCorner3out && isCorner4out;
 }
 
 bool Ellipse::withinCircle(double x2, double y2, double r)
 {
-	return x + rx <= r && y + ry <= r;
+	return (x + rx) <= (x2 + r) && (y + ry) <= (y2 + r);
+	/*double distance = sqrt((x - x2) * (x - x2) + (y - y2) * (y - y2));
+	return distance <= abs(rx - r) && distance <= abs(ry - r);*/
 }
 

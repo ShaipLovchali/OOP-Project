@@ -13,13 +13,14 @@ private:
 	void determineCommand(VectorOfFigures&, std::ifstream&, String&, Validator&);
 	void splitCommand();
 	void commandOpen(std::ifstream&, Validator&);
-	void commandClose(std::ifstream&);
+	void commandClose(std::ifstream&, Validator&);
 	void commandSave(VectorOfFigures&, std::ifstream&);
 	void commandSaveAs(VectorOfFigures&, std::ifstream&);
 	void commandHelp();
 	void commandCreate(VectorOfFigures&, Validator&);
 	void commandErase(VectorOfFigures&, Validator&);
 	void commandTranslate(VectorOfFigures&, Validator&);
+	void commandWithin(VectorOfFigures&, Validator&);
 
 public:
 	void start();

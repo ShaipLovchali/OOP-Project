@@ -4,20 +4,44 @@ Validator::Validator(){}
 
 Validator::Validator(const Vector<String>& other) : splitted(other){}
 
-bool Validator::validateOpen(std::ifstream& in, const char* fileName)
+bool Validator::validateOpen(std::ifstream& in)
 {
 	if (in.is_open()) {
 		std::cout << "There is a currently loaded file" << std::endl;
 		return false;
-	}else {
-		std::ifstream temp(fileName);
-		if (!temp) {
-			std::cout << "No such file existing" << std::endl;
-			return false;
-		}
 	}
+
+	char* fileName = splitted[1].getData();
+	if (fileName == nullptr) {
+		std::cout << "You didnt enter a file name" << std::endl;
+		return false;
+	}
+
+	std::ifstream temp(fileName);
+	if (!temp) {
+		std::cout << "No such file existing" << std::endl;
+		return false;
+	}
+	
 	return true;
 }
+
+bool Validator::validateClose(std::ifstream& in, const char* currFileName)
+{
+	char* fileName = splitted[1].getData();
+	if (fileName == nullptr) {
+		std::cout << "You didnt enter a file name" << std::endl;
+		return false;
+	}
+
+	if (strcmp(fileName, currFileName) != 0) {
+		std::cout << fileName << " is not opened" << std::endl;
+		return false;
+	}
+
+	return true;
+}
+
 
 bool Validator::validateCreate()
 {
@@ -27,12 +51,20 @@ bool Validator::validateCreate()
 		return false;
 	}
 	if (figureType == "circle") {
+		if (splitted.getCapacity() < 6) {
+			std::cout << "Not valid circle data" << std::endl;
+			return false;
+		}
 		if (!splitted[2].isANumber() || !splitted[3].isANumber() || !splitted[4].isANumber()) {
 			std::cout << "Not valid circle data" << std::endl;
 			return false;
 		}
 	}
 	else {
+		if (splitted.getCapacity() < 7) {
+			std::cout << "Not valid data" << std::endl;
+			return false;
+		}
 		if (!splitted[2].isANumber() || !splitted[3].isANumber() || !splitted[4].isANumber() || !splitted[5].isANumber()) {
 			std::cout << "Not valid data" << std::endl;
 			return false;
@@ -62,5 +94,34 @@ bool Validator::validateTranslate(const String& vertical, const String& horizont
 		return false;
 	}
 
+	return true;
+}
+
+bool Validator::validateWithin()
+{
+	String figureType = splitted[1];
+	if (figureType != "rect" && figureType != "circle") {
+		std::cout << "Invalid figure" << std::endl;
+		return false;
+	}
+	if (figureType == "circle") {
+		if (splitted.getCapacity() < 5) {
+			std::cout << "Not valid circle data" << std::endl;
+			return false;
+		}
+		if (!splitted[2].isANumber() || !splitted[3].isANumber() || !splitted[4].isANumber()) {
+			std::cout << "Not valid circle data" << std::endl;
+			return false;
+		}
+	}
+
+	if (splitted.getCapacity() < 6) {
+		std::cout << "Not valid rectangle data" << std::endl;
+		return false;
+	}
+	if (!splitted[2].isANumber() || !splitted[3].isANumber() || !splitted[4].isANumber() || !splitted[5].isANumber()) {
+		std::cout << "Not valid rectangle data" << std::endl;
+		return false;
+	}
 	return true;
 }

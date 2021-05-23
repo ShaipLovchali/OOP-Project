@@ -90,18 +90,13 @@ void VectorOfFigures::within(Vector<String>& splitted)
 		bool isWithin = false;
 		if (splitted[1] == "rect") {
 			isWithin = figures[i]->withinRect(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod());
-			if (isWithin) {
-				++counter;
-				std::cout << counter << ". ";
-				figures[i]->print();
-			}
 		}else if (splitted[1] == "circle") {
 			isWithin = figures[i]->withinCircle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod());
-			if (isWithin) {
-				++counter;
-				std::cout << counter << ". ";
-				figures[i]->print();
-			}
+		}
+		if (isWithin) {
+			++counter;
+			std::cout << counter << ". ";
+			figures[i]->print();
 		}
 	}
 	if (counter == 0) {
