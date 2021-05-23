@@ -14,9 +14,9 @@ public:
 	Rectangle& operator=(const Rectangle&);
 	~Rectangle();
 
-	void print() const override;
-	void loadDataFromFile(std::istream&) override;
-	void saveDataToFile(std::ostream&) override;
-	bool withinRect(double, double, int, int);
-	bool withinCircle(double, double, double);
+	void print() const;
+	void loadDataFromFile(std::istream&);
+	void saveDataToFile(std::ostream&) const;
+	bool withinRect(double, double, int, int) const;
+	bool withinCircle(double, double, double) const;
 };

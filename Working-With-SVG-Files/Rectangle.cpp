@@ -47,17 +47,17 @@ void Rectangle::loadDataFromFile(std::istream& in)
 	in >> x >> y >> width >> height >> fillColor;
 }
 
-void Rectangle::saveDataToFile(std::ostream& out)
+void Rectangle::saveDataToFile(std::ostream& out) const
 {
 	out << "\t" << "<rect x=\"" << this->x << "\" y=\"" << this->y << "\" width=\"" << this->width << "\" height=\"" << this->height << "\" fill=\"" << this->fillColor << "\" />";
 }
 
-bool Rectangle::withinRect(double x2, double y2, int width2, int height2)
+bool Rectangle::withinRect(double x2, double y2, int width2, int height2) const
 {
 	return x >= x2 && (x + width) <= (x2 + width2) && y >= y2 && (y + height) <= (y2 + height2);
 }
 
-bool Rectangle::withinCircle(double x2, double y2, double r)
+bool Rectangle::withinCircle(double x2, double y2, double r) const
 {
 	bool isCorner1In = sqrt((x - x2) * (x - x2) + (y - y2) * (y - y2)) <= r;
 	bool isCorner2In = sqrt(((x + width) - x2) * ((x + width) - x2) + (y - y2) * (y - y2)) <= r;

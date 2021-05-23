@@ -37,7 +37,7 @@ void Menu::splitCommand()
 	splitted.push_back(subStr);
 }
 
-void Menu::commandOpen(std::ifstream& in, Validator& validator) {
+void Menu::commandOpen(std::ifstream& in, const Validator& validator) {
 	bool isValid = validator.validateOpen(in);
 
 	if (isValid) {
@@ -48,7 +48,7 @@ void Menu::commandOpen(std::ifstream& in, Validator& validator) {
 	}
 }
 
-void Menu::commandClose(std::ifstream& in, Validator& validator)
+void Menu::commandClose(std::ifstream& in, const Validator& validator)
 {
 	char* fileName = splitted[1].getData();
 	bool isValid = validator.validateClose(in, currentFileName.getData());
@@ -82,7 +82,7 @@ void Menu::commandHelp()
 	std::cout << " exit exists the program" << std::endl;
 }
 
-void Menu::commandCreate(VectorOfFigures& v, Validator& validator)
+void Menu::commandCreate(VectorOfFigures& v, const Validator& validator)
 {
 	bool isValid = validator.validateCreate();
 	if (isValid) {
@@ -90,16 +90,17 @@ void Menu::commandCreate(VectorOfFigures& v, Validator& validator)
 	}
 }
 
-void Menu::commandErase(VectorOfFigures& v, Validator& validator)
+void Menu::commandErase(VectorOfFigures& v, const Validator& validator)
 {
-	int index = splitted[1].stod();
 	bool isValid = validator.validateIndex(v.size());
+
 	if (isValid) {
+		int index = splitted[1].stod();
 		v.erase(index);
 	}
 }
 
-void Menu::commandTranslate(VectorOfFigures& v, Validator& validator)
+void Menu::commandTranslate(VectorOfFigures& v, const Validator& validator)
 {
 	double vertical;
 	double horizontal;
@@ -126,7 +127,7 @@ void Menu::commandTranslate(VectorOfFigures& v, Validator& validator)
 	}
 }
 
-void Menu::commandWithin(VectorOfFigures& v, Validator& validator)
+void Menu::commandWithin(VectorOfFigures& v, const Validator& validator)
 {
 	bool isValid = validator.validateWithin();
 	

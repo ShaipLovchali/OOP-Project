@@ -48,12 +48,12 @@ void Ellipse::loadDataFromFile(std::istream& in)
 	in >> x >> y >> rx >> ry >> fillColor;
 }
 
-void Ellipse::saveDataToFile(std::ostream& out)
+void Ellipse::saveDataToFile(std::ostream& out) const
 {
 	out << "\t" << "<ellipse cx=\"" << this->x << "\" cy=\"" << this->y << "\" rx=\"" << this->rx << "\" ry=\"" << this->ry << "\" fill=\"" << this->fillColor << "\" />";
 }
 
-bool Ellipse::withinRect(double x2, double y2, int width, int height)
+bool Ellipse::withinRect(double x2, double y2, int width, int height) const
 {
 	if (x2 == 0 && y2 == 0) {
 		return (x + rx) <= width && (y + ry) <= height;
@@ -65,7 +65,7 @@ bool Ellipse::withinRect(double x2, double y2, int width, int height)
 	return isCorner1out && isCorner2out && isCorner3out && isCorner4out;
 }
 
-bool Ellipse::withinCircle(double x2, double y2, double r)
+bool Ellipse::withinCircle(double x2, double y2, double r) const
 {
 	return (x + rx) <= (x2 + r) && (y + ry) <= (y2 + r);
 	/*double distance = sqrt((x - x2) * (x - x2) + (y - y2) * (y - y2));

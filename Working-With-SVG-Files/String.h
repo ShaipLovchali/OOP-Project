@@ -42,9 +42,9 @@ public:
 	int compare(const String&); //Сравнява два низа лексикографски
 	void swap(String&); //Разменя стойностите на два низа
 	String getValue(const char&) const;
-	bool isANumber();
+	bool isANumber() const;
 
-	double stod();
+	double stod() const;
 	char* getData() const;
 
 	friend std::istream& operator>>(std::istream& in, String& other) {

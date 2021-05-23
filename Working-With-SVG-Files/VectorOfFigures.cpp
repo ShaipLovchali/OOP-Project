@@ -1,7 +1,7 @@
 #include "VectorOfFigures.h"
 #include <string>
 
-VectorOfFigures::VectorOfFigures() : figures(){}
+VectorOfFigures::VectorOfFigures(){}
 
 void VectorOfFigures::loadFromStream()
 {

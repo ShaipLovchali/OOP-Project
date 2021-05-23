@@ -343,7 +343,7 @@ String String::getValue(const char& c) const
 	return result;
 }
 
-bool String::isANumber()
+bool String::isANumber() const
 {
 	if ((data[0] < '0' || data[0] > '9') && data[0] != '-') {
 		return false;
@@ -366,7 +366,7 @@ void String::print()
 	std::cout << std::endl;
 }
 
-double String::stod()
+double String::stod() const
 {
 	double beforeDecimalPoint = 0;
 	double afterDecimalPoint = 0;

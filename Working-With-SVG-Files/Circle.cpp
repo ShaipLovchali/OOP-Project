@@ -47,12 +47,12 @@ void Circle::loadDataFromFile(std::istream& in)
 	in >> x >> y >> r >> fillColor;
 }
 
-void Circle::saveDataToFile(std::ostream& out)
+void Circle::saveDataToFile(std::ostream& out) const
 {
 	out << "\t" << "<circle cx=\"" << this->x << "\" cy=\"" << this->y << "\" r=\"" << this->r << "\" fill=\"" << this->fillColor << "\" />";
 }
 
-bool Circle::withinRect(double x2, double y2, int width, int height)
+bool Circle::withinRect(double x2, double y2, int width, int height) const
 {
 	if (x2 == 0 && y2 == 0) {
 		return (x + r) <= width && (y + r) <= height;
@@ -65,7 +65,7 @@ bool Circle::withinRect(double x2, double y2, int width, int height)
 	return isCorner1out && isCorner2out && isCorner3out && isCorner4out;
 }
 
-bool Circle::withinCircle(double x2, double y2, double r2)
+bool Circle::withinCircle(double x2, double y2, double r2) const
 {
 	if ((x2 - r2) <= 0 && (y2 - r2) <= 0) {
 		return ((x + r) <= (x2 + r2) && y <= r2) || ((y + r) <= (y2 + r2) && x <= r2);

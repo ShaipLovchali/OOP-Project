@@ -13,6 +13,7 @@ private:
 	Vector<Figure*> figures;
 public:
 	VectorOfFigures();
+
 	void loadFromStream();
 	Figure* getFigureType(const char*);
 	void create(Vector<String>&);
