@@ -6,7 +6,6 @@
 #include "Ellipse.h"
 #include "Vector.cpp"
 #include "String.h"
-#include <fstream>
 
 class VectorOfFigures {
 private:
@@ -16,11 +15,11 @@ public:
 
 	void loadFromStream();
 	Figure* getFigureType(const char*);
-	void create(Vector<String>&);
+	void create(const Vector<String>&);
 	void erase(int);
 	void translateAll(double, double);
 	void translate(int, double, double);
-	void within(Vector<String>&);
+	void within(const Vector<String>&);
 
 	size_t size() const;
 	void printFigures() const;

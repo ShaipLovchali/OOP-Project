@@ -1,5 +1,4 @@
 #include "VectorOfFigures.h"
-#include <string>
 
 VectorOfFigures::VectorOfFigures(){}
 
@@ -33,7 +32,7 @@ Figure* VectorOfFigures::getFigureType(const char* figureType)
 	}
 }
 
-void VectorOfFigures::create(Vector<String>& splitted)
+void VectorOfFigures::create(const Vector<String>& splitted)
 {
 	char* figureType = splitted[1].getData();
 	Figure* fig = nullptr;
@@ -82,7 +81,7 @@ void VectorOfFigures::translate(int index, double vertical, double horizontal)
 	std::cout << "Translated figure number " << index << std::endl;
 }
 
-void VectorOfFigures::within(Vector<String>& splitted)
+void VectorOfFigures::within(const Vector<String>& splitted)
 {
 	size_t counter = 0;
 	for (size_t i = 0; i < figures.getCapacity(); ++i)
@@ -121,20 +120,13 @@ void VectorOfFigures::printFigures() const
 void VectorOfFigures::saveFiguresToFile(const char* fileName, std::ifstream& in)
 {
 	std::ofstream out("text.txt");
-	char line[100];
+	out << "<?xml version=\"1.0\" standalone=\"no\"?>\n";
+	out << "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n";
+	out << "<svg>\n";
 
-	while (in.getline(line, 100)) {
-		String line2(line);
-		if (line2.find("<svg>") != -1) {
-			out << "<svg>\n";
-			for (size_t i = 0; i < figures.getCapacity(); ++i)
-			{
-				this->figures[i]->saveDataToFile(out);
-				out << "\n";
-			}
-			break;
-		}
-		out << line2;
+	for (size_t i = 0; i < figures.getCapacity(); ++i)
+	{
+		this->figures[i]->saveDataToFile(out);
 		out << "\n";
 	}
 	out << "</svg>";

@@ -1,9 +1,9 @@
 #pragma once
 #include "ParseData.h"
 
-void ParseData::parseSvg()
+void ParseData::parseSvg(const char* fileName)
 {
-	doc.load_file("figures.svg");
+	doc.load_file(fileName);
 	pugi::xml_node svgTag = doc.child("svg");
 
 	std::ofstream out("data.svg");

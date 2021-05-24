@@ -32,8 +32,8 @@ public:
 	char& operator[](int); //Връща символ от низа
 	void operator+=(const String&); //Добавя към един низ друг
 	String operator+(const String&); //Събира два низа и връща нов низ
-	bool operator==(const char*);
-	bool operator!=(const char*);
+	bool operator==(const char*) const;
+	bool operator!=(const char*) const;
 	void append(const String&); //Добавя към един низ друг
 	void pushBack(char); //Добавя символ в края на низа
 	void popBack(); //Премахва символ от края на низа

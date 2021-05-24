@@ -54,15 +54,7 @@ void Circle::saveDataToFile(std::ostream& out) const
 
 bool Circle::withinRect(double x2, double y2, int width, int height) const
 {
-	if (x2 == 0 && y2 == 0) {
-		return (x + r) <= width && (y + r) <= height;
-	}
-
-	bool isCorner1out = sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y)) >= r;
-	bool isCorner2out = sqrt(((x2 + width) - x) * ((x2 + width) - x) + (y2 - y) * (y2 - y)) >= r;
-	bool isCorner3out = sqrt((x2 - x) * (x2 - x) + ((y2 + height) - y) * ((y2 + height) - y)) >= r;
-	bool isCorner4out = sqrt(((x2 + width) - x) * ((x2 + width) - x) + ((y2 + height) - y) * ((y2 + height) - y)) >= r;
-	return isCorner1out && isCorner2out && isCorner3out && isCorner4out;
+	return abs(x - r) >= x2 && abs(y - r) >= y2 && x <= (x2 + width - r) && y <= (y2 + height - r);
 }
 
 bool Circle::withinCircle(double x2, double y2, double r2) const

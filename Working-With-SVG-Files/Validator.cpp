@@ -19,29 +19,23 @@ bool Validator::validateOpen(std::ifstream& in) const
 
 	std::ifstream temp(fileName);
 	if (!temp) {
-		std::cout << "No such file existing" << std::endl;
+		std::ofstream newFile(fileName);
+		newFile.close();
+		std::cout << "Successfully created " << fileName << std::endl;
 		return false;
 	}
 	
 	return true;
 }
 
-bool Validator::validateClose(std::ifstream& in, const char* currFileName) const
+bool Validator::validateClose() const
 {
-	if (splitted.getCapacity() < 2) {
-		std::cout << "You didnt enter a file name" << std::endl;
+	if (splitted.getCapacity() > 1) {
+		std::cout << "Command close does not take any arguments" << std::endl;
 		return false;
 	}
-	char* fileName = splitted[1].getData();
-
-	if (strcmp(fileName, currFileName) != 0) {
-		std::cout << fileName << " is not opened" << std::endl;
-		return false;
-	}
-
 	return true;
 }
-
 
 bool Validator::validateCreate() const
 {

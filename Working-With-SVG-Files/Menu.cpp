@@ -2,11 +2,7 @@
 
 void Menu::start()
 {
-	ParseData parser;
-	parser.parseSvg();
-
 	VectorOfFigures v;
-	v.loadFromStream();
 
 	std::ifstream f;
 	do {
@@ -37,12 +33,17 @@ void Menu::splitCommand()
 	splitted.push_back(subStr);
 }
 
-void Menu::commandOpen(std::ifstream& in, const Validator& validator) {
+void Menu::commandOpen(VectorOfFigures& v, std::ifstream& in, const Validator& validator) {
 	bool isValid = validator.validateOpen(in);
 
 	if (isValid) {
 		char* fileName = splitted[1].getData();
 		in.open(fileName);
+
+		ParseData parser;
+		parser.parseSvg(fileName);
+		v.loadFromStream();
+
 		currentFileName = splitted[1];
 		std::cout << "Successfully opened " << currentFileName << std::endl;
 	}
@@ -50,9 +51,8 @@ void Menu::commandOpen(std::ifstream& in, const Validator& validator) {
 
 void Menu::commandClose(std::ifstream& in, const Validator& validator)
 {
-	char* fileName = splitted[1].getData();
-	bool isValid = validator.validateClose(in, currentFileName.getData());
-	
+	bool isValid = validator.validateClose();
+
 	if (isValid) {
 		in.close();
 		std::cout << "Successfully closed " << currentFileName << std::endl;
@@ -138,42 +138,44 @@ void Menu::commandWithin(VectorOfFigures& v, const Validator& validator)
 
 void Menu::determineCommand(VectorOfFigures& v, std::ifstream &in, String& currFileName, Validator& validator)
 {
-	if (splitted[0] == "open") {
-		commandOpen(in, validator);
+	String firstCommand = splitted[0];
+
+	if (firstCommand == "open") {
+		commandOpen(v, in, validator);
 	}
 	else {
-		if (splitted[0] == "exit") {
+		if (firstCommand == "exit") {
 			std::cout << "Exiting the program..." << std::endl;
 		}else {
 			if (!in.is_open()) {
 				std::cout << "There is not an open file" << std::endl;
 			}
 			else {
-				if (splitted[0] == "close") {
+				if (firstCommand == "close") {
 					commandClose(in, validator);
 				}
-				else if (splitted[0] == "save") {
+				else if (firstCommand == "save") {
 					commandSave(v, in);
 				}
-				else if (splitted[0] == "saveas") {
+				else if (firstCommand == "saveas") {
 					commandSaveAs(v, in);
 				}
-				else if (splitted[0] == "help") {
+				else if (firstCommand == "help") {
 					commandHelp();
 				}
-				else if (splitted[0] == "print") {
+				else if (firstCommand == "print") {
 					v.printFigures();
 				}
-				else if (splitted[0] == "create") {
+				else if (firstCommand == "create") {
 					commandCreate(v, validator);
 				}
-				else if (splitted[0] == "erase") {
+				else if (firstCommand == "erase") {
 					commandErase(v, validator);
 				}
-				else if (splitted[0] == "translate") {
+				else if (firstCommand == "translate") {
 					commandTranslate(v, validator);
 				}
-				else if (splitted[0] == "within") {
+				else if (firstCommand == "within") {
 					commandWithin(v, validator);
 				}
 				else {
@@ -183,7 +185,3 @@ void Menu::determineCommand(VectorOfFigures& v, std::ifstream &in, String& currF
 		}
 	}
 }
-
-
-
-

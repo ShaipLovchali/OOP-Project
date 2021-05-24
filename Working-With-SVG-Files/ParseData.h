@@ -7,5 +7,5 @@ class ParseData {
 private:
 	pugi::xml_document doc;
 public:
-	void parseSvg();
+	void parseSvg(const char*);
 };

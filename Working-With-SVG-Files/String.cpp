@@ -201,7 +201,7 @@ String String::operator+(const String& other)
 	return result;
 }
 
-bool String::operator==(const char* other)
+bool String::operator==(const char* other) const
 {
 	if (other == nullptr) {
 		return this->data == nullptr;
@@ -219,7 +219,7 @@ bool String::operator==(const char* other)
 	return true;
 }
 
-bool String::operator!=(const char* other)
+bool String::operator!=(const char* other) const
 {
 	return !(*this == other);
 }
