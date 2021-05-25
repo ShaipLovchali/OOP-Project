@@ -108,6 +108,11 @@ size_t VectorOfFigures::size() const
 	return figures.getCapacity();
 }
 
+void VectorOfFigures::clean()
+{
+	figures.clear();
+}
+
 void VectorOfFigures::printFigures() const
 {
 	for (size_t i = 0; i < figures.getCapacity(); ++i)

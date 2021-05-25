@@ -49,12 +49,13 @@ void Menu::commandOpen(VectorOfFigures& v, std::ifstream& in, const Validator& v
 	}
 }
 
-void Menu::commandClose(std::ifstream& in, const Validator& validator)
+void Menu::commandClose(VectorOfFigures& v, std::ifstream& in, const Validator& validator)
 {
 	bool isValid = validator.validateClose();
 
 	if (isValid) {
 		in.close();
+		v.clean();
 		std::cout << "Successfully closed " << currentFileName << std::endl;
 	}
 }
@@ -152,7 +153,7 @@ void Menu::determineCommand(VectorOfFigures& v, std::ifstream &in, String& currF
 			}
 			else {
 				if (firstCommand == "close") {
-					commandClose(in, validator);
+					commandClose(v, in, validator);
 				}
 				else if (firstCommand == "save") {
 					commandSave(v, in);

@@ -11,7 +11,7 @@ private:
 	void determineCommand(VectorOfFigures&, std::ifstream&, String&, Validator&);
 	void splitCommand();
 	void commandOpen(VectorOfFigures&, std::ifstream&, const Validator&);
-	void commandClose(std::ifstream&, const Validator&);
+	void commandClose(VectorOfFigures&, std::ifstream&, const Validator&);
 	void commandSave(VectorOfFigures&, std::ifstream&);
 	void commandSaveAs(VectorOfFigures&, std::ifstream&);
 	void commandHelp();

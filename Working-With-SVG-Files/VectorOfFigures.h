@@ -22,6 +22,7 @@ public:
 	void within(const Vector<String>&);
 
 	size_t size() const;
+	void clean();
 	void printFigures() const;
 	void saveFiguresToFile(const char*, std::ifstream&);
 	void saveAsFiguresToFile(const char*, std::ifstream&);
