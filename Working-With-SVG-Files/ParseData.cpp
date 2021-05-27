@@ -1,4 +1,3 @@
-#pragma once
 #include "ParseData.h"
 
 void ParseData::parseSvg(const char* fileName)

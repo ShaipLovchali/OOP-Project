@@ -82,6 +82,15 @@ bool Validator::validateIndex(size_t size) const
 	return true;
 }
 
+bool Validator::validatePrint() const
+{
+	if (splitted.getCapacity() > 1) {
+		std::cout << "Command print does not take any arguments" << std::endl;
+		return false;
+	}
+	return true;
+}
+
 bool Validator::validateTranslate(const String& vertical, const String& horizontal) const
 {
 	if (vertical.find("vertical") == -1 || vertical.find("=") == -1 || !vertical.getValue('=').isANumber()) {

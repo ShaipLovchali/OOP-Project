@@ -83,6 +83,15 @@ void Menu::commandHelp()
 	std::cout << " exit exists the program" << std::endl;
 }
 
+void Menu::commandPrint(VectorOfFigures& v, const Validator& validator)
+{
+	bool isValid = validator.validatePrint();
+
+	if (isValid) {
+		v.printFigures();
+	}
+}
+
 void Menu::commandCreate(VectorOfFigures& v, const Validator& validator)
 {
 	bool isValid = validator.validateCreate();
@@ -165,7 +174,7 @@ void Menu::determineCommand(VectorOfFigures& v, std::ifstream &in, String& currF
 					commandHelp();
 				}
 				else if (firstCommand == "print") {
-					v.printFigures();
+					commandPrint(v, validator);
 				}
 				else if (firstCommand == "create") {
 					commandCreate(v, validator);

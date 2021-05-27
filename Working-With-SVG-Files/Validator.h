@@ -12,6 +12,7 @@ public:
 	bool validateClose() const;
 	bool validateCreate() const;
 	bool validateIndex(size_t size) const;
+	bool validatePrint() const;
 	bool validateTranslate(const String&, const String&) const;
 	bool validateWithin() const;
 };

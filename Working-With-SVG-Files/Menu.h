@@ -15,6 +15,7 @@ private:
 	void commandSave(VectorOfFigures&, std::ifstream&);
 	void commandSaveAs(VectorOfFigures&, std::ifstream&);
 	void commandHelp();
+	void commandPrint(VectorOfFigures&, const Validator&);
 	void commandCreate(VectorOfFigures&, const Validator&);
 	void commandErase(VectorOfFigures&, const Validator&);
 	void commandTranslate(VectorOfFigures&, const Validator&);
