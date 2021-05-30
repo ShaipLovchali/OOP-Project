@@ -345,12 +345,12 @@ String String::getValue(const char& c) const
 
 bool String::isANumber() const
 {
-	if ((data[0] < '0' || data[0] > '9') && data[0] != '-') {
+	if (data[0] < '0' || data[0] > '9' || data[0] == '-') {
 		return false;
 	}
 	for (size_t i = 1; i < size; ++i)
 	{
-		if (data[i] < '0' || data[i] > '9') {
+		if ((data[i] < '0' || data[i] > '9') && data[i] != '.') {
 			return false;
 		}
 	}

@@ -17,6 +17,6 @@ public:
 	void print() const;
 	void loadDataFromFile(std::istream&);
 	void saveDataToFile(std::ostream&) const;
-	bool withinRect(double, double, int, int) const;
+	bool withinRect(double, double, double, double) const;
 	bool withinCircle(double, double, double) const;
 };

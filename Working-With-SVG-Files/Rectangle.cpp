@@ -15,7 +15,7 @@ void Rectangle::erase()
 
 Rectangle::Rectangle() : Figure(), width(0), height(0) {}
 
-Rectangle::Rectangle(double x, double y, int width, int height, const char* fillColor) : Figure(x, y, fillColor), width(width), height(height){}
+Rectangle::Rectangle(double x, double y, double width, double height, const char* fillColor) : Figure(x, y, fillColor), width(width), height(height){}
 
 Rectangle::Rectangle(const Rectangle& other)
 {
@@ -52,7 +52,7 @@ void Rectangle::saveDataToFile(std::ostream& out) const
 	out << "\t" << "<rect x=\"" << this->x << "\" y=\"" << this->y << "\" width=\"" << this->width << "\" height=\"" << this->height << "\" fill=\"" << this->fillColor << "\" />";
 }
 
-bool Rectangle::withinRect(double x2, double y2, int width2, int height2) const
+bool Rectangle::withinRect(double x2, double y2, double width2, double height2) const
 {
 	return x >= x2 && (x + width) <= (x2 + width2) && y >= y2 && (y + height) <= (y2 + height2);
 }

@@ -52,7 +52,7 @@ void Circle::saveDataToFile(std::ostream& out) const
 	out << "\t" << "<circle cx=\"" << this->x << "\" cy=\"" << this->y << "\" r=\"" << this->r << "\" fill=\"" << this->fillColor << "\" />";
 }
 
-bool Circle::withinRect(double x2, double y2, int width, int height) const
+bool Circle::withinRect(double x2, double y2, double width, double height) const
 {
 	return abs(x - r) >= x2 && abs(y - r) >= y2 && x <= (x2 + width - r) && y <= (y2 + height - r);
 }

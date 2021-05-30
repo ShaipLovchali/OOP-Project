@@ -3,13 +3,13 @@
 
 class Rectangle : public Figure{
 private:
-	int width, height;
+	double width, height;
 
 	void copy(const Rectangle&);
 	void erase();
 public:
 	Rectangle();
-	Rectangle(double, double, int, int, const char*);
+	Rectangle(double, double, double, double, const char*);
 	Rectangle(const Rectangle&);
 	Rectangle& operator=(const Rectangle&);
 	~Rectangle();
@@ -17,6 +17,6 @@ public:
 	void print() const;
 	void loadDataFromFile(std::istream&);
 	void saveDataToFile(std::ostream&) const;
-	bool withinRect(double, double, int, int) const;
+	bool withinRect(double, double, double, double) const;
 	bool withinCircle(double, double, double) const;
 };
