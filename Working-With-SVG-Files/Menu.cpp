@@ -40,9 +40,7 @@ void Menu::commandOpen(VectorOfFigures& v, std::ifstream& in, const Validator& v
 		char* fileName = splitted[1].getData();
 		in.open(fileName);
 
-		ParseData parser;
-		parser.parseSvg(fileName);
-		v.loadFromStream();
+		v.loadFromStream(fileName);
 
 		currentFileName = splitted[1];
 		std::cout << "Successfully opened " << currentFileName << std::endl;

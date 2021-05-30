@@ -1,51 +1,55 @@
 #include "VectorOfFigures.h"
 
-VectorOfFigures::VectorOfFigures(){}
-
-void VectorOfFigures::loadFromStream()
+void VectorOfFigures::addFigure(const Vector<String>& splitted)
 {
-	std::ifstream in("data.svg");
-	char figureType[32];
-	in >> figureType;
+	Figure* fig = nullptr;
 
-	while (strcmp(figureType, "") != 0) {
-		Figure* newFigure = getFigureType(figureType);
-
-		newFigure->loadDataFromFile(in);
-		figures.push_back(newFigure);
-
-		in >> figureType;
+	if (splitted[0] == "rect") {
+		fig = new Rectangle(splitted[1].stod(), splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].getData());
 	}
-	in.close();
+	else if (splitted[0] == "circle") {
+		fig = new Circle(splitted[1].stod(), splitted[2].stod(), splitted[3].stod(), splitted[4].getData());
+	}
+	else if (splitted[0] == "ellipse") {
+		fig = new Ellipse(splitted[1].stod(), splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].getData());
+	}
+
+	figures.push_back(fig);
 }
 
-Figure* VectorOfFigures::getFigureType(const char* figureType)
+VectorOfFigures::VectorOfFigures(){}
+
+void VectorOfFigures::loadFromStream(const char* fileName)
 {
-	if (strcmp(figureType, "rect") == 0) {
-		return new Rectangle();
-	}
-	else if (strcmp(figureType, "circle") == 0) {
-		return new Circle();
-	}
-	else if (strcmp(figureType, "ellipse") == 0) {
-		return new Ellipse();
+	pugi::xml_document doc;
+	doc.load_file(fileName);
+	pugi::xml_node svgTag = doc.child("svg");
+
+	for (pugi::xml_node tag = svgTag.first_child(); tag; tag = tag.next_sibling()) {
+		Vector<String> data;
+
+		data.push_back(tag.name());
+		for (pugi::xml_attribute attr = tag.first_attribute(); attr; attr = attr.next_attribute())
+		{
+			data.push_back(attr.value());
+		}
+		addFigure(data);
 	}
 }
 
 void VectorOfFigures::create(const Vector<String>& splitted)
 {
-	char* figureType = splitted[1].getData();
 	Figure* fig = nullptr;
 
-	if (strcmp(figureType, "rect") == 0) {
+	if (splitted[1] == "rect") {
 		fig = new Rectangle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
 		std::cout << "Successfully created rectangle" << std::endl;
 	}
-	else if (strcmp(figureType, "circle") == 0) {
+	else if (splitted[1] == "circle") {
 		fig = new Circle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].getData());
 		std::cout << "Successfully created circle" << std::endl;
 	}
-	else if (strcmp(figureType, "ellipse") == 0) {
+	else if (splitted[1] == "ellipse") {
 		fig = new Ellipse(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
 		std::cout << "Successfully created ellipse" << std::endl;
 	}

@@ -15,7 +15,7 @@ void Rectangle::erase()
 
 Rectangle::Rectangle() : Figure(), width(0), height(0) {}
 
-Rectangle::Rectangle(double x, double y, double width, double height, const char* fillColor) : Figure(x, y, fillColor), width(width), height(height){}
+Rectangle::Rectangle(double x, double y, double _width, double _height, const char* fillColor) : Figure(x, y, fillColor), width(_width), height(_height){}
 
 Rectangle::Rectangle(const Rectangle& other)
 {

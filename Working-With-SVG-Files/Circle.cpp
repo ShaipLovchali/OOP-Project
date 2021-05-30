@@ -15,7 +15,7 @@ void Circle::erase()
 
 Circle::Circle() : Figure(),r(0){}
 
-Circle::Circle(double cx, double cy, double r, const char* fillColor) : Figure(cx, cy, fillColor), r(r) {}
+Circle::Circle(double cx, double cy, double _r, const char* fillColor) : Figure(cx, cy, fillColor), r(_r) {}
 
 Circle::Circle(const Circle& other)
 {

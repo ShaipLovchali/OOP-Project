@@ -1,5 +1,7 @@
 #pragma once
-#include "ParseData.h"
+#define PUGIXML_HEADER_ONLY
+#include "pugixml.cpp"
+#include <fstream>
 #include "Figure.h"
 #include "Rectangle.h"
 #include "Circle.h"
@@ -10,11 +12,12 @@
 class VectorOfFigures {
 private:
 	Vector<Figure*> figures;
+
+	void addFigure(const Vector<String>&);
 public:
 	VectorOfFigures();
 
-	void loadFromStream();
-	Figure* getFigureType(const char*);
+	void loadFromStream(const char*);
 	void create(const Vector<String>&);
 	void erase(int);
 	void translateAll(double, double);

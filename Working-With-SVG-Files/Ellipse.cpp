@@ -16,7 +16,7 @@ void Ellipse::erase()
 
 Ellipse::Ellipse(): Figure(), rx(0), ry(0){}
 
-Ellipse::Ellipse(double x1, double y1, double rx, double ry, const char* fillColor) : Figure(x1, y1, fillColor), rx(rx), ry(ry){}
+Ellipse::Ellipse(double x1, double y1, double _rx, double _ry, const char* fillColor) : Figure(x1, y1, fillColor), rx(_rx), ry(_ry){}
 
 Ellipse::Ellipse(const Ellipse& other)
 {
