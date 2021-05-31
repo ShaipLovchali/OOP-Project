@@ -40,7 +40,7 @@ void Menu::commandOpen(VectorOfFigures& v, std::ifstream& in, const Validator& v
 		char* fileName = splitted[1].getData();
 		in.open(fileName);
 
-		v.loadFromStream(fileName);
+		v.loadFromFile(fileName);
 
 		currentFileName = splitted[1];
 		std::cout << "Successfully opened " << currentFileName << std::endl;
@@ -53,7 +53,7 @@ void Menu::commandClose(VectorOfFigures& v, std::ifstream& in, const Validator& 
 
 	if (isValid) {
 		in.close();
-		v.clean();
+		v.clearFigures();
 		std::cout << "Successfully closed " << currentFileName << std::endl;
 	}
 }

@@ -2,16 +2,9 @@
 
 void Ellipse::copy(const Ellipse& other)
 {
-	setX(other.x);
-	setY(other.y);
+	copyFig(other.x, other.y, other.fillColor);
 	this->rx = other.rx;
 	this->ry = other.ry;
-	setFillColor(other.fillColor);
-}
-
-void Ellipse::erase()
-{
-	delete[] this->fillColor;
 }
 
 Ellipse::Ellipse(): Figure(), rx(0), ry(0){}
@@ -26,15 +19,10 @@ Ellipse::Ellipse(const Ellipse& other)
 Ellipse& Ellipse::operator=(const Ellipse& other)
 {
 	if (this != &other) {
-		erase();
+		delete[] this->fillColor;
 		copy(other);
 	}
 	return *this;
-}
-
-Ellipse::~Ellipse()
-{
-	erase();
 }
 
 void Ellipse::print() const

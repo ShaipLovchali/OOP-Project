@@ -19,7 +19,7 @@ void VectorOfFigures::addFigure(const Vector<String>& splitted)
 
 VectorOfFigures::VectorOfFigures(){}
 
-void VectorOfFigures::loadFromStream(const char* fileName)
+void VectorOfFigures::loadFromFile(const char* fileName)
 {
 	pugi::xml_document doc;
 	doc.load_file(fileName);
@@ -112,8 +112,12 @@ size_t VectorOfFigures::size() const
 	return figures.getCapacity();
 }
 
-void VectorOfFigures::clean()
+void VectorOfFigures::clearFigures()
 {
+	for (size_t i = 0; i < figures.getCapacity(); ++i)
+	{
+		delete figures[i];
+	}
 	figures.clear();
 }
 

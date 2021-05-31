@@ -1,5 +1,4 @@
 #pragma once
-#include "VectorOfFigures.h"
 #include "Validator.h"
 
 class Menu {
@@ -20,7 +19,6 @@ private:
 	void commandErase(VectorOfFigures&, const Validator&);
 	void commandTranslate(VectorOfFigures&, const Validator&);
 	void commandWithin(VectorOfFigures&, const Validator&);
-
 public:
 	void start();
 };

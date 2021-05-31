@@ -1,6 +1,6 @@
 #pragma once
 #define PUGIXML_HEADER_ONLY
-#include "pugixml.cpp"
+#include "pugixml.hpp"
 #include <fstream>
 #include "Figure.h"
 #include "Rectangle.h"
@@ -17,7 +17,7 @@ private:
 public:
 	VectorOfFigures();
 
-	void loadFromStream(const char*);
+	void loadFromFile(const char*);
 	void create(const Vector<String>&);
 	void erase(int);
 	void translateAll(double, double);
@@ -25,7 +25,7 @@ public:
 	void within(const Vector<String>&);
 
 	size_t size() const;
-	void clean();
+	void clearFigures();
 	void printFigures() const;
 	void saveFiguresToFile(const char*, std::ifstream&);
 	void saveAsFiguresToFile(const char*, std::ifstream&);

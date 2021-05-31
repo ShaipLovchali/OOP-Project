@@ -1,16 +1,9 @@
 #include "Rectangle.h"
 
 void Rectangle::copy(const Rectangle& other) {
-	setX(other.x);
-	setY(other.y);
+	copyFig(other.x, other.y, other.fillColor);
 	this->width = other.width;
 	this->height = other.height;
-	setFillColor(other.fillColor);
-}
-
-void Rectangle::erase()
-{
-	delete[] this->fillColor;
 }
 
 Rectangle::Rectangle() : Figure(), width(0), height(0) {}
@@ -25,15 +18,10 @@ Rectangle::Rectangle(const Rectangle& other)
 Rectangle& Rectangle::operator=(const Rectangle& other)
 {
 	if (this != &other) {
-		erase();
+		delete[] this->fillColor;
 		copy(other);
 	}
 	return *this;
-}
-
-Rectangle::~Rectangle()
-{
-	erase();
 }
 
 void Rectangle::print() const
@@ -43,7 +31,6 @@ void Rectangle::print() const
 
 void Rectangle::loadDataFromFile(std::istream& in)
 {
-	fillColor = new char[32];
 	in >> x >> y >> width >> height >> fillColor;
 }
 

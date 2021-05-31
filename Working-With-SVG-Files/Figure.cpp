@@ -10,6 +10,18 @@ Figure::Figure(double _x, double _y, const char* fillColor) : x(_x), y(_y), fill
 	this->fillColor[strlen(fillColor)] = '\0';
 }
 
+Figure::~Figure()
+{
+	delete[] this->fillColor;
+}
+
+void Figure::copyFig(double x, double y, const char* fillColor)
+{
+	setX(x);
+	setY(y);
+	setFillColor(fillColor);
+}
+
 void Figure::setX(double x)
 {
 	this->x = x;

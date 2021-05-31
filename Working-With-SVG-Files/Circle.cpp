@@ -1,19 +1,12 @@
-#include "Circle.h";
+#include "Circle.h"
 
 void Circle::copy(const Circle& other)
 {
-	setX(other.x);
-	setY(other.y);
+	copyFig(other.x, other.y, other.fillColor);
 	this->r = other.r;
-	setFillColor(other.fillColor);
 }
 
-void Circle::erase()
-{
-	delete[] this->fillColor;
-}
-
-Circle::Circle() : Figure(),r(0){}
+Circle::Circle() : Figure(), r(0){}
 
 Circle::Circle(double cx, double cy, double _r, const char* fillColor) : Figure(cx, cy, fillColor), r(_r) {}
 
@@ -25,15 +18,10 @@ Circle::Circle(const Circle& other)
 Circle& Circle::operator=(const Circle& other)
 {
 	if (this != &other) {
-		erase();
+		delete[] this->fillColor;
 		copy(other);
 	}
 	return *this;
-}
-
-Circle::~Circle()
-{
-	erase();
 }
 
 void Circle::print() const

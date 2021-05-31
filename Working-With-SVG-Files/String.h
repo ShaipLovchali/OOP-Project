@@ -48,7 +48,7 @@ public:
 	char* getData() const;
 
 	friend std::istream& operator>>(std::istream& in, String& other) {
-		other.size = 60;
+		other.size = 100;
 		other.data = new char[other.size];
 		in.getline(other.data, other.size);
 		
