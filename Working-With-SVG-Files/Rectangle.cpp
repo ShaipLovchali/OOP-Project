@@ -1,28 +1,8 @@
 #include "Rectangle.h"
 
-void Rectangle::copy(const Rectangle& other) {
-	copyFig(other.x, other.y, other.fillColor);
-	this->width = other.width;
-	this->height = other.height;
-}
-
 Rectangle::Rectangle() : Figure(), width(0), height(0) {}
 
-Rectangle::Rectangle(double x, double y, double _width, double _height, const char* fillColor) : Figure(x, y, fillColor), width(_width), height(_height){}
-
-Rectangle::Rectangle(const Rectangle& other)
-{
-	copy(other);
-}
-
-Rectangle& Rectangle::operator=(const Rectangle& other)
-{
-	if (this != &other) {
-		delete[] this->fillColor;
-		copy(other);
-	}
-	return *this;
-}
+Rectangle::Rectangle(double x, double y, double _width, double _height, const String& fillColor) : Figure(x, y, fillColor), width(_width), height(_height) {}
 
 void Rectangle::print() const
 {

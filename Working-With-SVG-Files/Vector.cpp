@@ -1,6 +1,4 @@
-#pragma once
 #include "Vector.h"
-#include <iostream>
 
 template<typename T>
 void Vector<T>::copy(const Vector<T>& other)

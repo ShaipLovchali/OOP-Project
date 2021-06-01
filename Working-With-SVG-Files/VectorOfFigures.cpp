@@ -5,13 +5,13 @@ void VectorOfFigures::addFigure(const Vector<String>& splitted)
 	Figure* fig = nullptr;
 
 	if (splitted[0] == "rect") {
-		fig = new Rectangle(splitted[1].stod(), splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].getData());
+		fig = new Rectangle(splitted[1].stod(), splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5]);
 	}
 	else if (splitted[0] == "circle") {
-		fig = new Circle(splitted[1].stod(), splitted[2].stod(), splitted[3].stod(), splitted[4].getData());
+		fig = new Circle(splitted[1].stod(), splitted[2].stod(), splitted[3].stod(), splitted[4]);
 	}
 	else if (splitted[0] == "ellipse") {
-		fig = new Ellipse(splitted[1].stod(), splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].getData());
+		fig = new Ellipse(splitted[1].stod(), splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5]);
 	}
 
 	figures.push_back(fig);
@@ -42,15 +42,15 @@ void VectorOfFigures::create(const Vector<String>& splitted)
 	Figure* fig = nullptr;
 
 	if (splitted[1] == "rect") {
-		fig = new Rectangle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
+		fig = new Rectangle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6]);
 		std::cout << "Successfully created rectangle" << std::endl;
 	}
 	else if (splitted[1] == "circle") {
-		fig = new Circle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].getData());
+		fig = new Circle(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5]);
 		std::cout << "Successfully created circle" << std::endl;
 	}
 	else if (splitted[1] == "ellipse") {
-		fig = new Ellipse(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6].getData());
+		fig = new Ellipse(splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5].stod(), splitted[6]);
 		std::cout << "Successfully created ellipse" << std::endl;
 	}
 

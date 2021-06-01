@@ -10,13 +10,6 @@ int length(const char* data) {
 	return size;
 }
 
-template<typename T>
-void mySwap(T &a, T &b) {
-	T temp = a;
-	a = b;
-	b = temp;
-}
-
 void String::copy(const String& other)
 {
 	this->size = other.size;
@@ -155,7 +148,7 @@ void String::reverse()
 {
 	for (size_t i = 0; i < size / 2; ++i)
 	{
-		mySwap(data[i], data[size - i - 1]);
+		std::swap(data[i], data[size - i - 1]);
 	}
 }
 
@@ -325,7 +318,7 @@ int String::compare(const String& other)
 
 void String::swap(String& other)
 {
-	mySwap(*this, other);
+	std::swap(*this, other);
 }
 
 String String::getValue(const char& c) const

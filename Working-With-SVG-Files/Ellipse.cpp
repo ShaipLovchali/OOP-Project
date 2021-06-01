@@ -1,29 +1,8 @@
 #include "Ellipse.h"
 
-void Ellipse::copy(const Ellipse& other)
-{
-	copyFig(other.x, other.y, other.fillColor);
-	this->rx = other.rx;
-	this->ry = other.ry;
-}
-
 Ellipse::Ellipse(): Figure(), rx(0), ry(0){}
 
-Ellipse::Ellipse(double x1, double y1, double _rx, double _ry, const char* fillColor) : Figure(x1, y1, fillColor), rx(_rx), ry(_ry){}
-
-Ellipse::Ellipse(const Ellipse& other)
-{
-	copy(other);
-}
-
-Ellipse& Ellipse::operator=(const Ellipse& other)
-{
-	if (this != &other) {
-		delete[] this->fillColor;
-		copy(other);
-	}
-	return *this;
-}
+Ellipse::Ellipse(double x1, double y1, double _rx, double _ry, const String& fillColor) : Figure(x1, y1, fillColor), rx(_rx), ry(_ry){}
 
 void Ellipse::print() const
 {
@@ -32,7 +11,6 @@ void Ellipse::print() const
 
 void Ellipse::loadDataFromFile(std::istream& in)
 {
-	fillColor = new char[32];
 	in >> x >> y >> rx >> ry >> fillColor;
 }
 
@@ -48,11 +26,6 @@ bool Ellipse::withinRect(double x2, double y2, double width, double height) cons
 
 bool Ellipse::withinCircle(double x2, double y2, double r) const
 {
-	if ((x2 - r) <= 0 && (y2 - r) <= 0) {
-		return ((x + rx) <= (x2 + r) && y <= r) || ((y + ry) <= (y2 + r) && x <= r);
-	}
-
-	double distance = sqrt((x - x2) * (x - x2) + (y - y2) * (y - y2));
-	return distance <= abs(rx - r) && distance <= abs(ry - r);
+	return (x - rx) > (x2 - r) && (y - ry) > (y2 - r) && (x + rx) <= (x2 + r) && (y + ry) <= (y2 + r);
 }
 

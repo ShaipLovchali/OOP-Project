@@ -1,25 +1,24 @@
 #pragma once
 #include <iostream>
 #include <cstring>
+#include "String.h"
 
 class Figure {
 protected:
 	double x, y;
-	char* fillColor;
+	String fillColor;
 
 public:
 	Figure();
-	Figure(double, double, const char*);
-	~Figure();
+	Figure(double, double, const String&);
 
-	void copyFig(double, double, const char*);
 	void setX(double);
 	void setY(double);
-	void setFillColor(const char*);
+	void setFillColor(const String&);
 
 	double getX() const;
 	double getY() const;
-	char* getFillColor() const;
+	String getFillColor() const;
 
 	virtual void print() const = 0;
 	virtual void loadDataFromFile(std::istream&) = 0;

@@ -16,9 +16,6 @@ public:
 	String(const char* data); //Задава начална стойност на низа
 	~String(); //Част от Г4
 
-	template<typename T>
-	friend void mySwap(T&, T&);
-
 	size_t getSize() const; //Връща размера на низа
 	String concat(const String&); //Конкатенира два низа (низ1 = "а", низ2 = "b", низ1.concat(низ2) = "ab")
 	String* split(const char* delimiter); //Разделя низа по подаден символ или низ
@@ -48,10 +45,12 @@ public:
 	char* getData() const;
 
 	friend std::istream& operator>>(std::istream& in, String& other) {
-		other.size = 100;
-		other.data = new char[other.size];
-		in.getline(other.data, other.size);
-		
+		char ch;
+		other.clear();
+
+		while (in.get(ch) && ch != '\n') {
+			other.pushBack(ch);
+		}
 		return in;
 	}
 	friend std::ostream& operator<<(std::ostream& out, const String& other) {

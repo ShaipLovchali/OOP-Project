@@ -4,14 +4,10 @@
 class Circle : public Figure{
 private:
 	double r;
-
-	void copy(const Circle&);
 public:
 	Circle();
-	Circle(double, double, double, const char*);
-	Circle(const Circle&);
-	Circle& operator=(const Circle&);
-
+	Circle(double, double, double, const String&);
+	
 	void print() const;
 	void loadDataFromFile(std::istream&);
 	void saveDataToFile(std::ostream&) const;
