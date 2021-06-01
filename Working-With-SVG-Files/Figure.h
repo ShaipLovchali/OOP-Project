@@ -14,7 +14,6 @@ public:
 
 	void setX(double);
 	void setY(double);
-	void setFillColor(const String&);
 
 	double getX() const;
 	double getY() const;

@@ -13,6 +13,9 @@ void VectorOfFigures::addFigure(const Vector<String>& splitted)
 	else if (splitted[0] == "ellipse") {
 		fig = new Ellipse(splitted[1].stod(), splitted[2].stod(), splitted[3].stod(), splitted[4].stod(), splitted[5]);
 	}
+	else {
+		return;
+	}
 
 	figures.push_back(fig);
 }

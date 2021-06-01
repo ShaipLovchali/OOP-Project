@@ -14,11 +14,6 @@ void Figure::setY(double y)
 	this->y = y;
 }
 
-void Figure::setFillColor(const String& fillColor)
-{
-	this->fillColor = fillColor;
-}
-
 double Figure::getX() const
 {
 	return this->x;
