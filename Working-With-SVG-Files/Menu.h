@@ -3,22 +3,25 @@
 
 class Menu {
 private:
-	String currentFileName;
 	String command;
 	Vector<String> splitted;
+	VectorOfFigures v;
+	std::ifstream in;
+	Validator validator;
+	String currentFileName;
 
-	void determineCommand(VectorOfFigures&, std::ifstream&, String&, Validator&);
+	void determineCommand();
 	void splitCommand();
-	void commandOpen(VectorOfFigures&, std::ifstream&, const Validator&);
-	void commandClose(VectorOfFigures&, std::ifstream&, const Validator&);
-	void commandSave(VectorOfFigures&, std::ifstream&);
-	void commandSaveAs(VectorOfFigures&, std::ifstream&);
+	void commandOpen();
+	void commandClose();
+	void commandSave();
+	void commandSaveAs();
 	void commandHelp();
-	void commandPrint(VectorOfFigures&, const Validator&);
-	void commandCreate(VectorOfFigures&, const Validator&);
-	void commandErase(VectorOfFigures&, const Validator&);
-	void commandTranslate(VectorOfFigures&, const Validator&);
-	void commandWithin(VectorOfFigures&, const Validator&);
+	void commandPrint();
+	void commandCreate();
+	void commandErase();
+	void commandTranslate();
+	void commandWithin();
 public:
 	void start();
 };

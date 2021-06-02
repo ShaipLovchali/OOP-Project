@@ -2,16 +2,13 @@
 
 void Menu::start()
 {
-	VectorOfFigures v;
-
-	std::ifstream f;
 	do {
 		std::cout << "Please, enter a command: ";
 		std::cin >> command;
 		splitCommand();
 
-		Validator validator(splitted);
-		determineCommand(v, f, currentFileName, validator);
+		validator = splitted;
+		determineCommand();
 	} while (splitted[0] != "exit");
 }
 
@@ -33,7 +30,7 @@ void Menu::splitCommand()
 	splitted.push_back(subStr);
 }
 
-void Menu::commandOpen(VectorOfFigures& v, std::ifstream& in, const Validator& validator) {
+void Menu::commandOpen() {
 	bool isValid = validator.validateOpen(in);
 
 	if (isValid) {
@@ -47,7 +44,7 @@ void Menu::commandOpen(VectorOfFigures& v, std::ifstream& in, const Validator& v
 	}
 }
 
-void Menu::commandClose(VectorOfFigures& v, std::ifstream& in, const Validator& validator)
+void Menu::commandClose()
 {
 	bool isValid = validator.validateClose();
 
@@ -58,13 +55,13 @@ void Menu::commandClose(VectorOfFigures& v, std::ifstream& in, const Validator& 
 	}
 }
 
-void Menu::commandSave(VectorOfFigures& v, std::ifstream& in)
+void Menu::commandSave()
 {
 	v.saveFiguresToFile(currentFileName.getData(), in);
 	std::cout << "Successfully saved " << currentFileName << std::endl;
 }
 
-void Menu::commandSaveAs(VectorOfFigures& v, std::ifstream& in)
+void Menu::commandSaveAs()
 {
 	v.saveAsFiguresToFile(currentFileName.getData(), in);
 	std::cout << "Successfully saved " << currentFileName << " in the path" << std::endl;
@@ -81,7 +78,7 @@ void Menu::commandHelp()
 	std::cout << " exit exists the program" << std::endl;
 }
 
-void Menu::commandPrint(VectorOfFigures& v, const Validator& validator)
+void Menu::commandPrint()
 {
 	bool isValid = validator.validatePrint();
 
@@ -90,7 +87,7 @@ void Menu::commandPrint(VectorOfFigures& v, const Validator& validator)
 	}
 }
 
-void Menu::commandCreate(VectorOfFigures& v, const Validator& validator)
+void Menu::commandCreate()
 {
 	bool isValid = validator.validateCreate();
 	if (isValid) {
@@ -98,7 +95,7 @@ void Menu::commandCreate(VectorOfFigures& v, const Validator& validator)
 	}
 }
 
-void Menu::commandErase(VectorOfFigures& v, const Validator& validator)
+void Menu::commandErase()
 {
 	bool isValid = validator.validateIndex(v.size());
 
@@ -108,7 +105,7 @@ void Menu::commandErase(VectorOfFigures& v, const Validator& validator)
 	}
 }
 
-void Menu::commandTranslate(VectorOfFigures& v, const Validator& validator)
+void Menu::commandTranslate()
 {
 	double vertical;
 	double horizontal;
@@ -135,7 +132,7 @@ void Menu::commandTranslate(VectorOfFigures& v, const Validator& validator)
 	}
 }
 
-void Menu::commandWithin(VectorOfFigures& v, const Validator& validator)
+void Menu::commandWithin()
 {
 	bool isValid = validator.validateWithin();
 	
@@ -144,12 +141,12 @@ void Menu::commandWithin(VectorOfFigures& v, const Validator& validator)
 	}
 }
 
-void Menu::determineCommand(VectorOfFigures& v, std::ifstream &in, String& currFileName, Validator& validator)
+void Menu::determineCommand()
 {
 	String firstCommand = splitted[0];
 
 	if (firstCommand == "open") {
-		commandOpen(v, in, validator);
+		commandOpen();
 	}
 	else {
 		if (firstCommand == "exit") {
@@ -160,31 +157,31 @@ void Menu::determineCommand(VectorOfFigures& v, std::ifstream &in, String& currF
 			}
 			else {
 				if (firstCommand == "close") {
-					commandClose(v, in, validator);
+					commandClose();
 				}
 				else if (firstCommand == "save") {
-					commandSave(v, in);
+					commandSave();
 				}
 				else if (firstCommand == "saveas") {
-					commandSaveAs(v, in);
+					commandSaveAs();
 				}
 				else if (firstCommand == "help") {
 					commandHelp();
 				}
 				else if (firstCommand == "print") {
-					commandPrint(v, validator);
+					commandPrint();
 				}
 				else if (firstCommand == "create") {
-					commandCreate(v, validator);
+					commandCreate();
 				}
 				else if (firstCommand == "erase") {
-					commandErase(v, validator);
+					commandErase();
 				}
 				else if (firstCommand == "translate") {
-					commandTranslate(v, validator);
+					commandTranslate();
 				}
 				else if (firstCommand == "within") {
-					commandWithin(v, validator);
+					commandWithin();
 				}
 				else {
 					std::cout << "You have enterned an invalid command!" << std::endl;
