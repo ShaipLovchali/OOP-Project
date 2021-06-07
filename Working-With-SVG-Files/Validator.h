@@ -10,6 +10,9 @@ public:
 
 	bool validateOpen(std::ifstream&) const;
 	bool validateClose() const;
+	bool validateSave() const;
+	bool validateSaveAs() const;
+	bool validateHelp() const;
 	bool validateCreate() const;
 	bool validateIndex(size_t size) const;
 	bool validatePrint() const;

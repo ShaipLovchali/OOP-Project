@@ -37,6 +37,39 @@ bool Validator::validateClose() const
 	return true;
 }
 
+bool Validator::validateSave() const
+{
+	if (splitted.getCapacity() > 1) {
+		std::cout << "Command save does not take any arguments" << std::endl;
+		return false;
+	}
+	return true;
+}
+
+bool Validator::validateSaveAs() const
+{
+	if (splitted.getCapacity() > 2) {
+		std::cout << "Command saveas takes only 1 argument" << std::endl;
+		return false;
+	}
+	std::ifstream in(splitted[1].getData());
+	if (!in) {
+		std::cout << "You have enterned invalid path" << std::endl;
+		return false;
+	}
+
+	return true;
+}
+
+bool Validator::validateHelp() const
+{
+	if (splitted.getCapacity() > 1) {
+		std::cout << "Command help does not take any arguments" << std::endl;
+		return false;
+	}
+	return true;
+}
+
 bool Validator::validateCreate() const
 {
 	String figureType = splitted[1];

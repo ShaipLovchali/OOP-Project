@@ -5,8 +5,8 @@ class Menu {
 private:
 	String command;
 	Vector<String> splitted;
-	VectorOfFigures v;
-	std::ifstream in;
+	VectorOfFigures figures;
+	std::ifstream fileStream;
 	Validator validator;
 	String currentFileName;
 

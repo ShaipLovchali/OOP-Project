@@ -31,13 +31,13 @@ void Menu::splitCommand()
 }
 
 void Menu::commandOpen() {
-	bool isValid = validator.validateOpen(in);
+	bool isValid = validator.validateOpen(fileStream);
 
 	if (isValid) {
 		char* fileName = splitted[1].getData();
-		in.open(fileName);
+		fileStream.open(fileName);
 
-		v.loadFromFile(fileName);
+		figures.loadFromFile(fileName);
 
 		currentFileName = splitted[1];
 		std::cout << "Successfully opened " << currentFileName << std::endl;
@@ -49,33 +49,44 @@ void Menu::commandClose()
 	bool isValid = validator.validateClose();
 
 	if (isValid) {
-		in.close();
-		v.clearFigures();
+		fileStream.close();
+		figures.clearFigures();
 		std::cout << "Successfully closed " << currentFileName << std::endl;
 	}
 }
 
 void Menu::commandSave()
 {
-	v.saveFiguresToFile(currentFileName.getData(), in);
-	std::cout << "Successfully saved " << currentFileName << std::endl;
+	bool isValid = validator.validateSave();
+
+	if (isValid) {
+		figures.saveFiguresToFile(currentFileName.getData(), fileStream);
+		std::cout << "Successfully saved " << currentFileName << std::endl;
+	}
 }
 
 void Menu::commandSaveAs()
 {
-	v.saveAsFiguresToFile(currentFileName.getData(), in);
-	std::cout << "Successfully saved " << currentFileName << " in the path" << std::endl;
+	bool isValid = validator.validateSaveAs();
+
+	if (isValid) {
+		figures.saveAsFiguresToFile(currentFileName.getData(), fileStream);
+		std::cout << "Successfully saved " << currentFileName << " in the path" << std::endl;
+	}
 }
 
 void Menu::commandHelp()
 {
-	std::cout << "The following commands are supported:" << std::endl;
-	std::cout << " open <file> - opens <file>" << std::endl;
-	std::cout << " close closes currently opened file" << std::endl;
-	std::cout << " save saves the currently open file" << std::endl;
-	std::cout << " saveas <file> saves the currently open file in <file>" << std::endl;
-	std::cout << " help prints this information" << std::endl;
-	std::cout << " exit exists the program" << std::endl;
+	bool isValid = validator.validateHelp();
+	if (isValid) {
+		std::cout << "The following commands are supported:" << std::endl;
+		std::cout << " open <file> - opens <file>" << std::endl;
+		std::cout << " close closes currently opened file" << std::endl;
+		std::cout << " save saves the currently open file" << std::endl;
+		std::cout << " saveas <file> saves the currently open file in <file>" << std::endl;
+		std::cout << " help prints this information" << std::endl;
+		std::cout << " exit exists the program" << std::endl;
+	}
 }
 
 void Menu::commandPrint()
@@ -83,7 +94,7 @@ void Menu::commandPrint()
 	bool isValid = validator.validatePrint();
 
 	if (isValid) {
-		v.printFigures();
+		figures.printFigures();
 	}
 }
 
@@ -91,17 +102,17 @@ void Menu::commandCreate()
 {
 	bool isValid = validator.validateCreate();
 	if (isValid) {
-		v.create(splitted);
+		figures.create(splitted);
 	}
 }
 
 void Menu::commandErase()
 {
-	bool isValid = validator.validateIndex(v.size());
+	bool isValid = validator.validateIndex(figures.size());
 
 	if (isValid) {
 		int index = splitted[1].stod();
-		v.erase(index);
+		figures.erase(index);
 	}
 }
 
@@ -116,18 +127,18 @@ void Menu::commandTranslate()
 		if (isInputValid) {
 			vertical = splitted[1].getValue('=').stod();
 			horizontal = splitted[2].getValue('=').stod();
-			v.translateAll(vertical, horizontal);
+			figures.translateAll(vertical, horizontal);
 		}
 	}
 	else {
 		int index = splitted[1].stod();
-		bool isIndexValid = validator.validateIndex(v.size());
+		bool isIndexValid = validator.validateIndex(figures.size());
 		bool isInputValid = validator.validateTranslate(splitted[2], splitted[3]);
 
 		if (isIndexValid && isInputValid) {
 			vertical = splitted[2].getValue('=').stod();
 			horizontal = splitted[3].getValue('=').stod();
-			v.translate(index, vertical, horizontal);
+			figures.translate(index, vertical, horizontal);
 		}
 	}
 }
@@ -137,7 +148,7 @@ void Menu::commandWithin()
 	bool isValid = validator.validateWithin();
 	
 	if (isValid) {
-		v.within(splitted);
+		figures.within(splitted);
 	}
 }
 
@@ -152,7 +163,7 @@ void Menu::determineCommand()
 		if (firstCommand == "exit") {
 			std::cout << "Exiting the program..." << std::endl;
 		}else {
-			if (!in.is_open()) {
+			if (!fileStream.is_open()) {
 				std::cout << "There is not an open file" << std::endl;
 			}
 			else {
